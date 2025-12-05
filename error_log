@@ -1,0 +1,16 @@
+[09-Jan-2025 10:52:53 UTC] PHP Warning:  require(/home/deshiish/public_html/vendor/autoload.php): Failed to open stream: No such file or directory in /home/deshiish/public_html/index.php on line 34
+[09-Jan-2025 10:52:53 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/deshiish/public_html/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/deshiish/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/deshiish/public_html/index.php on line 34
+[09-Jan-2025 10:52:53 UTC] PHP Warning:  require(/home/deshiish/public_html/vendor/autoload.php): Failed to open stream: No such file or directory in /home/deshiish/public_html/index.php on line 34
+[09-Jan-2025 10:52:53 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/deshiish/public_html/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/deshiish/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/deshiish/public_html/index.php on line 34
+[09-Jan-2025 10:52:55 UTC] PHP Warning:  require(/home/deshiish/public_html/vendor/autoload.php): Failed to open stream: No such file or directory in /home/deshiish/public_html/index.php on line 34
+[09-Jan-2025 10:52:55 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/deshiish/public_html/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/deshiish/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/deshiish/public_html/index.php on line 34
+[11-May-2025 13:03:24 Asia/Dhaka] PHP Fatal error:  Cannot use App\Models\Admin as Admin because the name is already in use in /home/ajkerpon/test.ajkerponno.com/storage/framework/views/7d41dbee0e62b9e242d46380bc8432ad1e973a46.php on line 34
