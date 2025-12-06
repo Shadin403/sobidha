@@ -8,7 +8,7 @@
 <meta property="og:title" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="" />
-<meta property="og:image" content="{{ if($generalsetting->white_logo) asset($generalsetting->white_logo) @else null @endif  }}" />
+<meta property="og:image" content="{{ $generalsetting->white_logo ? asset($generalsetting->white_logo) : '' }}">
 <meta property="og:description" content="" />
 @endpush @push('css')
 <link rel="stylesheet" href="{{ asset('public/frontEnd/css/owl.carousel.min.css') }}" />
