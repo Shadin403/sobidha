@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>@yield('title') - {{ $generalsetting->name }}</title>
+    <title>@yield('title') - {{ $generalsetting->name ?? null }}</title>
 
     <meta name="facebook-domain-verification" content="2f7vvnzbpug91a8t8gp4ei177bkf2x" />
     <!-- App favicon -->
