@@ -603,3 +603,111 @@ button.order_place {
 .form_sec {
     padding: 30px 0;
 }
+
+/* Hero Section Styles */
+.hero-section {
+    padding: 30px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa; /* Light background for the page */
+}
+
+.hero-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 3px solid #ff7e5f; /* Example border color */
+    text-align: center;
+    position: relative;
+    max-width: 450px; /* Constrain width for mobile-like feel */
+    margin: 0 auto;
+}
+
+.hero-header {
+    background: #ff7e5f; /* Fallback */
+    background: linear-gradient(to bottom, #ff7e5f, #feb47b);
+    padding: 30px 20px 60px 20px; /* Extra padding bottom for curve overlap */
+    position: relative;
+    color: white;
+    border-radius: 0 0 50% 50% / 0 0 20px 20px; /* Subtle curve at bottom if needed, or use clip-path */
+    /* Alternative curve approach using clip-path or shape divider */
+    clip-path: ellipse(150% 100% at 50% 0%);
+}
+
+.hero-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    font-family: "Hind Siliguri", sans-serif;
+}
+
+.hero-body {
+    padding: 20px;
+    margin-top: -50px; /* Pull up to overlap header */
+    position: relative;
+    z-index: 10;
+}
+
+.hero-image-wrapper {
+    background: #fff;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 300px;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
+.hero-price {
+    margin-bottom: 20px;
+}
+
+.old-price {
+    font-size: 18px;
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 10px;
+}
+
+.new-price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+.hero-footer {
+    margin-top: 10px;
+    padding-bottom: 20px;
+}
+
+.btn-hero-order {
+    background: #000;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 900;
+    font-style: italic; /* Matches 'Order Now!' style often seen */
+    padding: 12px 40px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, background 0.2s;
+    display: inline-block;
+}
+
+.btn-hero-order:hover {
+    transform: scale(1.05);
+    background: #222;
+    color: #fff;
+}

@@ -70,29 +70,27 @@
             $shipping = Session::get('shipping')?Session::get('shipping'):0;
         @endphp
 
-        <section class="pt-5" >
+        <section class="hero-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="campaign_image">
-                            <div class="campaign_item2">
-                                <div class=" d-flex align-items-center justify-content-center flex-column p-3">
-                                     <div class="logo-image mb-3">
-                        <img src="{{asset($generalsetting->white_logo)}}" alt="" height="60" />
-                    </div>
-                                    <h1 class="mb-3">{{$campaign_data->banner_title}} </h1>
-                                     <h4 class="mb-3">{!! $campaign_data->short_description !!} </h4>
-                                     <div class=" d-flex align-items-center justify-content-center">
-
-
-
-                                    <a href="#order_form" class="cam_order_now mb-3" id="cam_order_now" style="
-    background: black;
-">বর্তমানে ডিসকাউন্ট প্রাইজঃ  <span style="
-    font-family: math;
-">{{$product->new_price}}</span> টাকা</a>
-                        </div>
-
+                <div class="text-center mb-4">
+                    <img src="{{asset($generalsetting->white_logo)}}" alt="" height="60" />
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-5">
+                        <div class="hero-card">
+                            <div class="hero-header">
+                                <h1 class="hero-title">{{$campaign_data->banner_title}}</h1>
+                            </div>
+                            <div class="hero-body">
+                                <div class="hero-image-wrapper">
+                                     <img src="{{asset($campaign_data->image_one)}}" class="hero-image" alt="Product Image">
+                                </div>
+                                <div class="hero-price">
+                                    <span class="old-price">৳{{$product->old_price}}</span>
+                                    <span class="new-price">৳{{$product->new_price}}</span>
+                                </div>
+                                <div class="hero-footer">
+                                    <a href="#order_form" class="btn-hero-order">Order Now!</a>
                                 </div>
                             </div>
                         </div>
@@ -101,35 +99,8 @@
             </div>
         </section>
 
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-6 m-auto">
-                         <div class="camp_img_item">
-                                   <img src="{{asset($campaign_data->image_one)}}" class="img-fluid w-100" alt="">
-                               </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="camp_video_sec">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
 
-                        <!--<div class="camp_vid">-->
-                        <!--    <iframe width="653" height="480" src="https://www.youtube.com/embed/{{$campaign_data->video}}" title="মিক্সড মাসালা ড্রাই ফ্রুটস/মধুময় বাদাম মিক্সড/ Mixed Dry Fruits/Honey Nuts Recipe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>-->
-                        <!--</div>-->
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="ord_btn">
-                            <a href="#order_form" class="cam_order_now" id="cam_order_now"> অর্ডার করতে ক্লিক করুন <i class="fa-solid fa-cart-shopping"></i> </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section>
             <div class="container">
@@ -153,126 +124,150 @@
     width: 100%;
     padding: 10px;
 ">
-                           <div class="offer-box-pro">
-    <!-- Top Ribbon -->
-    <div class="ribbon">🏠 হোম ডেলিভারি ফ্রি</div>
+                         <!-- Google Font Import -->
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <div class="box-content">
-        <p class="sub-text">রেগুলার প্রাইজ</p>
+<div class="premium-pricing-card">
+    <!-- Home Delivery Badge -->
+    <div class="delivery-badge">
+        <span class="icon">🏠</span> সারা বাংলাদেশ সম্পূর্ণ ক্যাশ অন হোম ডেলিভারি দেওয়া হয়
+    </div>
 
-        <!-- X Price Area -->
-        <div class="x-price-wrapper">
-            <span class="amount">{{$product->old_price}}</span>
-            <span class="tk">টাকা</span>
-            <!-- Cross Lines -->
-            <div class="line l1"></div>
-            <div class="line l2"></div>
+    <!-- Pricing Section -->
+    <div class="price-container">
+        <div class="old-price-wrapper">
+            <span class="label">রেগুলার প্রাইজ:</span>
+            <span class="x-price-pro">
+                {{$product->old_price}}<span class="currency">৳</span>
+            </span>
         </div>
 
-        <div class="divider"></div>
-
-        <p class="offer-text">🔥🔥 আজকের অফার প্রাইজ 🔥🔥</p>
-        <div class="final-price">
-            {{$product->new_price}} <span class="tk-big">টাকা</span>
+        <div class="new-price-wrapper">
+            <span class="offer-tag">🔥ডিসকাউন্ট প্রাইজ</span>
+            <div class="big-price">
+                {{$product->new_price}} <span class="currency">টাকা</span>
+            </div>
         </div>
     </div>
 
-    <div class="footer-alert">
-        ✅ এক টাকাও অগ্রিম পেমেন্ট ছাড়া অর্ডার করুন
+    <!-- Trust Text -->
+    <div class="trust-text">
+        <span class="check-icon">🛡️</span> এক টাকাও অগ্রিম পেমেন্ট ছাড়া অর্ডার করুন
     </div>
 </div>
 
 <style>
-    .offer-box-pro {
-        font-family: sans-serif;
-        border: 2px solid #ffebee;
-        background: linear-gradient(to bottom, #fff, #fffbfb);
-        border-radius: 12px;
-        text-align: center;
-        max-width: 400px;
+    .premium-pricing-card {
+        font-family: 'Hind Siliguri', sans-serif;
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 30px 20px;
+        max-width: 500px;
         margin: 20px auto;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Soft Shadow */
+        border: 1px solid #eee;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 5px 15px rgba(255,0,0,0.05);
     }
 
-    .ribbon {
-        background: #ff5252;
-        color: white;
-        padding: 5px 0;
-        font-weight: bold;
-        font-size: 14px;
-        position: relative;
-        width: 100%;
-    }
-
-    .box-content {
-        padding: 20px;
-    }
-
-    .sub-text {
-        margin: 0;
-        color: #7f8c8d;
-        font-size: 14px;
-    }
-
-    /* X Price Logic */
-    .x-price-wrapper {
-        position: relative;
-        display: inline-block;
-        font-size: 24px;
-        font-weight: bold;
-        color: #95a5a6;
-        margin: 5px 0 15px 0;
-    }
-    .x-price-wrapper .tk { font-size: 16px; }
-
-    .x-price-wrapper .line {
+    /* Top Decoration Line */
+    .premium-pricing-card::top {
+        content: '';
         position: absolute;
-        background: rgba(255, 0, 0, 0.7);
-        height: 3px;
-        width: 100%;
+        top: 0;
         left: 0;
-        top: 50%;
-        border-radius: 5px;
-    }
-    .x-price-wrapper .l1 { transform: rotate(20deg); }
-    .x-price-wrapper .l2 { transform: rotate(-20deg); }
-
-    .divider {
-        height: 1px;
-        background: #eee;
-        margin: 10px 40px;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #ff6b6b, #ee5253);
     }
 
-    .offer-text {
-        color: #d32f2f;
-        font-weight: bold;
-        font-size: 14px;
-        margin: 10px 0 5px 0;
+    .delivery-badge {
+        background: #e7f5ff;
+        color: #0077b6;
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        margin-bottom: 25px;
+        border: 1px solid #d0ebff;
     }
 
-    .final-price {
-        font-size: 36px;
-        font-weight: 800;
-        color: #2d3436;
-        text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+    .price-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
     }
-    .tk-big {
+
+    .old-price-wrapper .label {
+        font-size: 16px;
+        color: #888;
+        margin-right: 5px;
+    }
+
+    /* Your X Design Refined */
+    .x-price-pro {
+        position: relative;
+        color: #999;
+        font-weight: 700;
         font-size: 20px;
-        color: #555;
+        display: inline-block;
+    }
+    .x-price-pro::before, .x-price-pro::after {
+        content: "";
+        position: absolute;
+        width: 110%;
+        height: 2px;
+        background: #ff4d4d;
+        top: 50%;
+        left: -5%;
+        border-radius: 2px;
+    }
+    .x-price-pro::before { transform: rotate(20deg); } /* Less steep angle looks cleaner */
+    .x-price-pro::after { transform: rotate(-20deg); }
+
+    .new-price-wrapper {
+        margin-top: 5px;
     }
 
-    .footer-alert {
-        background: #e8f5e9;
-        color: #27ae60;
-        font-weight: bold;
+    .offer-tag {
+        display: block;
         font-size: 14px;
+        color: #ff3f34;
+        font-weight: 600;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .big-price {
+        font-size: 38px;
+        font-weight: 700;
+        color: #2d3436;
+        line-height: 1;
+        background: -webkit-linear-gradient(#ff3f34, #d63031);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .big-price .currency {
+        font-size: 20px;
+        -webkit-text-fill-color: #555;
+    }
+
+    .trust-text {
+        margin-top: 25px;
+        color: #27ae60;
+        font-weight: 600;
+        font-size: 16px;
+        background: #f0fdf4;
         padding: 10px;
-        border-top: 1px solid #c8e6c9;
+        border-radius: 8px;
+        border: 1px dashed #27ae60;
     }
 </style>
-
                             </div>
                         </div>
                     </div>
