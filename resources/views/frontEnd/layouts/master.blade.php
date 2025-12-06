@@ -10,7 +10,7 @@
     <meta name="facebook-domain-verification" content="2f7vvnzbpug91a8t8gp4ei177bkf2x" />
     <!-- App favicon -->
 
-    <link rel="shortcut icon" href="{{ asset($generalsetting->favicon) }}" alt="Super Ecommerce Favicon" />
+    <link rel="shortcut icon" href="{{ $generalsetting?->favicon ?? null }}" alt="Super Ecommerce Favicon" />
     <meta name="author" content="Digital Web Solution Bangladesh" />
 
 
