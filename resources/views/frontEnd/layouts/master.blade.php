@@ -618,23 +618,95 @@
 
 
                     <!-- col end -->
-                    <div class="col-sm-2 mb-5 mb-sm-0">
-                        <div class="footer-menu">
-                            <ul>
-                                <li class="title stay_conn"><a>Stay Connected</a></li>
-                            </ul>
-                            <ul class="social_link">
-                                @foreach ($socialicons as $value)
-                                    <li class="social_list">
-                                        <a class="mobile-social-link" href="{{ $value->link }}"><i
-                                                class="{{ $value->icon }}"></i></a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                    <div class="col-sm-2 mb-5 mb-sm-0 premium-social">
+                        <ul>
+                            <li class="title stay_conn"><a>Stay Connected</a></li>
+                        </ul>
 
-
-                        </div>
+                        <ul class="social_link">
+                            @foreach ($socialicons as $value)
+                                <li class="social_list">
+                                    <a class="mobile-social-link" href="{{ $value->link }}" target="_blank">
+                                        <i class="{{ $value->icon }}"></i>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
+
+                    <style>
+                        .premium-social .stay_conn a {
+                            font-size: 18px;
+                            font-weight: 700;
+                            color: #222;
+                            letter-spacing: 0.5px;
+                            position: relative;
+                            padding-bottom: 8px;
+                            display: inline-block;
+
+                        }
+
+                        /* Title underline premium effect */
+                        .premium-social .stay_conn a::after {
+                            content: "";
+                            width: 40px;
+                            height: 3px;
+                            background: linear-gradient(90deg, #ff4d4d, #1e73be);
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            border-radius: 4px;
+                        }
+
+                        .premium-social .social_link {
+                            margin-top: 15px;
+                            display: flex;
+                            gap: 12px;
+                            flex-wrap: wrap;
+                        }
+
+                        .premium-social .social_list {
+                            list-style: none;
+                        }
+
+                        /* Premium circle icon */
+                        .mobile-social-link {
+                            width: 42px;
+                            height: 42px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 50%;
+                            color: #fff !important;
+                            border: 1px solid #e5e5e5;
+                            font-size: 18px;
+                            color: #333;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+                            background: linear-gradient(135deg, #ff4d4d, #1e73be);
+                        }
+
+                        /* Hover gradient + scale premium effect */
+                        .mobile-social-link:hover {
+
+                            color: #fff !important;
+                            border-color: transparent;
+                            transform: translateY(-4px);
+                            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+                        }
+
+                        /* Mobile responsive */
+                        @media (max-width: 576px) {
+                            .premium-social {
+                                text-align: center;
+                            }
+
+                            .premium-social .social_link {
+                                justify-content: center;
+                            }
+                        }
+                    </style>
+
                     <!-- col end -->
                 </div>
             </div>
