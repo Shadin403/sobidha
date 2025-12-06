@@ -1393,8 +1393,9 @@ section.slider-section {
 .order_now_btn {
     font-size: 18px;
     color: #fff;
-    background-color: #ed145b;
-    border: 1px solid #ed145b;
+    font-weight: bold;
+    background-color: #3c7d17;
+    border: 1px solid #3c7d17;
     border-radius: 3px;
     width: 50%;
     margin-left: 5px;
@@ -1419,8 +1420,9 @@ section.slider-section {
 
 .add_cart_btn {
     color: #fff;
-    background-color: #3c7d17;
-    border: 1px solid #3c7d17;
+    font-weight: bold;
+    background-color: #ed145b;
+    border: 1px solid #ed145b;
     border-radius: 0;
     width: 50%;
     height: 45px;
@@ -1433,6 +1435,7 @@ section.slider-section {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
 }
 
 .call_now_btn i {
@@ -2935,7 +2938,7 @@ section.product-inner {
 
 .quick_view_btn {
     width: 100%;
-    background: #1b6ab0;
+    background: #940d03;
     position: absolute;
     opacity: 0;
     z-index: 0;
@@ -3063,11 +3066,11 @@ section.product-inner {
 }
 
 .cart_btn a:hover {
-    background: #1b6ab0;
+    background: #940d03;
 }
 
 .pro_btn button:hover {
-    background: #1b6ab0;
+    background: #940d03;
 }
 
 .pro_price del {
@@ -3940,7 +3943,7 @@ a.forget-link {
 }
 
 .cart_btn.order_button a:hover {
-    background: #1b6ab0;
+    background: #940d03;
 }
 
 span.sale-badge-text p {
@@ -4006,6 +4009,11 @@ ul.child-category {
     text-align: center;
     padding: 5px 0;
     text-transform: capitalize;
+}
+@media (max-width: 768px) {
+    .cat_name {
+        margin-right: 60px;
+    }
 }
 
 .cat_item {

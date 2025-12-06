@@ -98,34 +98,7 @@
                                                         <del>৳{{ $details->old_price }}</del>
                                                     @endif ৳{{ $details->new_price }}
                                                 </p>
-                                                <div class="details-ratting-wrapper">
-                                                    @php
-                                                        $averageRating = $reviews->avg('ratting');
-                                                        $filledStars = floor($averageRating);
-                                                        $emptyStars = 5 - $filledStars;
-                                                    @endphp
 
-                                                    @if ($averageRating >= 0 && $averageRating <= 5)
-                                                        @for ($i = 1; $i <= $filledStars; $i++)
-                                                            <i class="fas fa-star"></i>
-                                                        @endfor
-
-                                                        @if ($averageRating == $filledStars)
-                                                            {{-- If averageRating is an integer, don't display half star --}}
-                                                        @else
-                                                            <i class="far fa-star-half-alt"></i>
-                                                        @endif
-
-                                                        @for ($i = 1; $i <= $emptyStars; $i++)
-                                                            <i class="far fa-star"></i>
-                                                        @endfor
-
-                                                        <span>{{ number_format($averageRating, 2) }}/5</span>
-                                                    @else
-                                                        <span>Invalid rating range</span>
-                                                    @endif
-                                                    <a class="all-reviews-button" href="#writeReview">See Reviews</a>
-                                                </div>
                                                 <!--<div class="product-code">-->
                                                 <!--    <p><span>প্রোডাক্ট কোড : </span>{{ $details->product_code }}</p>-->
                                                 <!--</div>-->
@@ -222,7 +195,7 @@
                                                         <div class="mt-md-2 mt-2">
                                                             <h4 class="font-weight-bold">
                                                                 <a class="btn btn-success w-100 call_now_btn"
-                                                                    href="https://wa.me/8801560014987">
+                                                                    href="https://wa.me/{{ $contact->hotline }}">
                                                                     <i class="fa-brands fa-whatsapp"></i>
                                                                     {{ $contact->hotline }}
                                                                 </a>
@@ -268,15 +241,15 @@
                             {{-- <li class="active">
                             <a href="#specification" target="_self">Specification</a>
                         </li> --}}
-                            <li>
+                            {{-- <li>
                                 <a href="#description" target="_self">Description</a>
-                            </li>
+                            </li> --}}
                             {{-- <li>
                             <a href="#question" target="_self">Questions (0)</a>
                         </li> --}}
-                            <li>
+                            {{-- <li>
                                 <a href="#writeReview" target="_self">Reviews ({{ $reviews->count() }}) </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>
@@ -287,15 +260,15 @@
     <section class="pro_details_area">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-8" id="product-details-box">
                     <div class="description tab-content details-action-box" id="description">
-                        <h2>বিস্তারিত</h2>
+                        <h2> পণ্যের বিস্তারিত</h2>
                         <p>{!! $details->description !!}</p>
                     </div>
                     <div class="tab-content details-action-box" id="writeReview">
                         <div class="container">
                             <div class="row">
-                                <div class="col-sm-12">
+                                {{-- <div class="col-sm-12">
                                     <div class="section-head">
                                         <div class="title">
                                             <h2>Reviews ({{ $reviews->count() }})</h2>
@@ -406,7 +379,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -508,6 +481,104 @@
     <script src="{{ asset('public/frontEnd/js/owl.carousel.min.js') }}"></script>
 
     <script src="{{ asset('public/frontEnd/js/zoomsl.min.js') }}"></script>
+
+    <style>
+        @media (max-width: 768px) {
+            #product-details-box {
+                top: -65px;
+                left: -10px;
+                position: relative;
+            }
+        }
+
+        /* ১. মূল বক্সের ডিজাইন */
+        .description.details-action-box {
+            background-color: #ffffff !important;
+            padding: 30px !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+            margin-top: 30px !important;
+            border: 1px solid #eef0f3 !important;
+            display: block !important;
+        }
+
+        /* ২. হেডিং (পণ্যের বিস্তারিত) ডিজাইন */
+        .description.details-action-box h2 {
+            font-size: 24px !important;
+            font-weight: 600 !important;
+            color: #333333 !important;
+            margin-bottom: 20px !important;
+            padding-bottom: 15px !important;
+            border-bottom: 1px solid #e0e0e0 !important;
+            position: relative !important;
+            text-transform: capitalize !important;
+        }
+
+        /* হেডিং-এর নিচে ছোট্ট রঙিন দাগ */
+        .description.details-action-box h2::after {
+            content: '' !important;
+            position: absolute !important;
+            bottom: -1px !important;
+            left: 0 !important;
+            width: 80px !important;
+            height: 3px !important;
+            background-color: #ff5722 !important;
+            /* আপনার থিম কালার অনুযায়ী পরিবর্তন করুন */
+            border-radius: 2px !important;
+            display: block !important;
+        }
+
+        /* ৩. প্যারাগ্রাফ বা টেক্সট ডিজাইন */
+        .description.details-action-box p {
+            font-size: 16px !important;
+            line-height: 1.8 !important;
+            color: #555555 !important;
+            margin-bottom: 15px !important;
+            text-align: justify !important;
+            font-family: inherit !important;
+            /* থিমের ফন্ট ব্যবহার করার জন্য */
+        }
+
+        /* ৪. ডেসক্রিপশনের ভেতরের ইমেজের রেস্পনসিভ ডিজাইন */
+        .description.details-action-box img {
+            max-width: 100% !important;
+            height: auto !important;
+            border-radius: 5px !important;
+            margin: 15px 0 !important;
+            display: block !important;
+            box-shadow: none !important;
+            /* ইমেজে অন্য শ্যাডো থাকলে সরাবে */
+        }
+
+        /* ৫. লিস্ট (ul/ol) ফিক্স */
+        .description.details-action-box ul,
+        .description.details-action-box ol {
+            margin-left: 20px !important;
+            margin-bottom: 20px !important;
+            padding-left: 15px !important;
+            list-style-position: outside !important;
+        }
+
+        .description.details-action-box li {
+            margin-bottom: 8px !important;
+            color: #555555 !important;
+            line-height: 1.6 !important;
+        }
+
+        /* ৬. টেবিল ফিক্স (যদি থাকে) */
+        .description.details-action-box table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+            margin: 20px 0 !important;
+        }
+
+        .description.details-action-box table th,
+        .description.details-action-box table td {
+            border: 1px solid #ddd !important;
+            padding: 10px !important;
+            text-align: left !important;
+        }
+    </style>
 
     <script>
         $(document).ready(function() {

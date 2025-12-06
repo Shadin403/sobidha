@@ -33,17 +33,17 @@
           fbq('track', 'PageView');
         </script>
         <noscript>
-          <img height="1" width="1" style="display:none" 
+          <img height="1" width="1" style="display:none"
                src="https://www.facebook.com/tr?id={{{$pixel->code}}}&ev=PageView&noscript=1"/>
         </noscript>
         <!-- End Facebook Pixel Code -->
         @endforeach
-        
+
         <meta name="app-url" content="{{route('campaign',$campaign_data->slug)}}" />
         <meta name="robots" content="index, follow" />
         <meta name="description" content="{{$campaign_data->description}}" />
         <meta name="keywords" content="{{ $campaign_data->slug }}" />
-        
+
         <!-- Twitter Card data -->
         <meta name="twitter:card" content="product" />
         <meta name="twitter:site" content="{{$campaign_data->name}}" />
@@ -52,7 +52,7 @@
         <meta name="twitter:creator" content="hellodinajpur.com" />
         <meta property="og:url" content="{{route('campaign',$campaign_data->slug)}}" />
         <meta name="twitter:image" content="{{asset($campaign_data->image_one)}}" />
-        
+
         <!-- Open Graph data -->
         <meta property="og:title" content="{{$campaign_data->name}}" />
         <meta property="og:type" content="product" />
@@ -83,16 +83,16 @@
                                     <h1 class="mb-3">{{$campaign_data->banner_title}} </h1>
                                      <h4 class="mb-3">{!! $campaign_data->short_description !!} </h4>
                                      <div class=" d-flex align-items-center justify-content-center">
-                                         
-                                     
-                                 
+
+
+
                                     <a href="#order_form" class="cam_order_now mb-3" id="cam_order_now" style="
     background: black;
 ">বর্তমানে ডিসকাউন্ট প্রাইজঃ  <span style="
     font-family: math;
 ">{{$product->new_price}}</span> টাকা</a>
                         </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -100,14 +100,14 @@
                 </div>
             </div>
         </section>
-        
+
         <section>
             <div class="container">
                 <div class="row">
                     <div class="col-6 m-auto">
                          <div class="camp_img_item">
                                    <img src="{{asset($campaign_data->image_one)}}" class="img-fluid w-100" alt="">
-                               </div> 
+                               </div>
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                       
+
                         <!--<div class="camp_vid">-->
                         <!--    <iframe width="653" height="480" src="https://www.youtube.com/embed/{{$campaign_data->video}}" title="মিক্সড মাসালা ড্রাই ফ্রুটস/মধুময় বাদাম মিক্সড/ Mixed Dry Fruits/Honey Nuts Recipe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>-->
                         <!--</div>-->
@@ -153,24 +153,133 @@
     width: 100%;
     padding: 10px;
 ">
-                                <h2>
-                                
-                                    🏠 🏠সম্পূর্ণ হোম ডেলিভারিতে পণ্য দেওয়া হয় 🏠🏠 🔥🔥রেগুলার প্রাইজঃ <span style="
-    font-family: fantasy;
-">  {{$product->old_price}}</span> টাকা বর্তমানে ডিসকাউন্ট প্রাইজঃ<span style="
-    font-family: fantasy;
-"> {{$product->new_price}}</span> টাকা 🔥🔥এক টাকা ও অগ্রিম পেমেন্ট ছাড়া অর্ডার করুন
+                           <div class="offer-box-pro">
+    <!-- Top Ribbon -->
+    <div class="ribbon">🏠 হোম ডেলিভারি ফ্রি</div>
 
+    <div class="box-content">
+        <p class="sub-text">রেগুলার প্রাইজ</p>
 
-                                </h2>
-                                
+        <!-- X Price Area -->
+        <div class="x-price-wrapper">
+            <span class="amount">{{$product->old_price}}</span>
+            <span class="tk">টাকা</span>
+            <!-- Cross Lines -->
+            <div class="line l1"></div>
+            <div class="line l2"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="offer-text">🔥🔥 আজকের অফার প্রাইজ 🔥🔥</p>
+        <div class="final-price">
+            {{$product->new_price}} <span class="tk-big">টাকা</span>
+        </div>
+    </div>
+
+    <div class="footer-alert">
+        ✅ এক টাকাও অগ্রিম পেমেন্ট ছাড়া অর্ডার করুন
+    </div>
+</div>
+
+<style>
+    .offer-box-pro {
+        font-family: sans-serif;
+        border: 2px solid #ffebee;
+        background: linear-gradient(to bottom, #fff, #fffbfb);
+        border-radius: 12px;
+        text-align: center;
+        max-width: 400px;
+        margin: 20px auto;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(255,0,0,0.05);
+    }
+
+    .ribbon {
+        background: #ff5252;
+        color: white;
+        padding: 5px 0;
+        font-weight: bold;
+        font-size: 14px;
+        position: relative;
+        width: 100%;
+    }
+
+    .box-content {
+        padding: 20px;
+    }
+
+    .sub-text {
+        margin: 0;
+        color: #7f8c8d;
+        font-size: 14px;
+    }
+
+    /* X Price Logic */
+    .x-price-wrapper {
+        position: relative;
+        display: inline-block;
+        font-size: 24px;
+        font-weight: bold;
+        color: #95a5a6;
+        margin: 5px 0 15px 0;
+    }
+    .x-price-wrapper .tk { font-size: 16px; }
+
+    .x-price-wrapper .line {
+        position: absolute;
+        background: rgba(255, 0, 0, 0.7);
+        height: 3px;
+        width: 100%;
+        left: 0;
+        top: 50%;
+        border-radius: 5px;
+    }
+    .x-price-wrapper .l1 { transform: rotate(20deg); }
+    .x-price-wrapper .l2 { transform: rotate(-20deg); }
+
+    .divider {
+        height: 1px;
+        background: #eee;
+        margin: 10px 40px;
+    }
+
+    .offer-text {
+        color: #d32f2f;
+        font-weight: bold;
+        font-size: 14px;
+        margin: 10px 0 5px 0;
+    }
+
+    .final-price {
+        font-size: 36px;
+        font-weight: 800;
+        color: #2d3436;
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+    }
+    .tk-big {
+        font-size: 20px;
+        color: #555;
+    }
+
+    .footer-alert {
+        background: #e8f5e9;
+        color: #27ae60;
+        font-weight: bold;
+        font-size: 14px;
+        padding: 10px;
+        border-top: 1px solid #c8e6c9;
+    }
+</style>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-   
+
 
         <section class="rules_sec">
             <div class="container">
@@ -181,7 +290,7 @@
 ">
                             <h2> 🌬🏠বাড়িতে একটি মেশ নেবুলাইজার থাকা কেন গুরুত্বপূর্ণ 🏠🌬</h2>
                         </div>
-                         
+
                     </div>
                 </div>
                 <div class="row">
@@ -214,55 +323,72 @@
                             <!--        </div>-->
                             <!--    </div>-->
                             <!--</div>-->
-                            {!! $campaign_data->description !!} 
-
-                        </div>
-                    </div>
-                </div>
-                   <div class="row mt-5">
-                    <div class="col-sm-12">
-                      <div class="rules_inner shadow-0">
-
-                            <div class="rules_item">
-                                <div class="rules_head">
-                                    
-                                    <div class="rules_des">
-                                        <ul>
-                                            <li>আকারে ছোট তাই সহজে বহন করা যায়।</li>
-                                            <li>ব্যাটারি ও ইলেক্ট্রিসিটি দুই ভাবেই চালানো যায়।</li>
-                                            <li>বাচ্চা থেকে বয়স্ক সবাই ব্যবহার করতে পারবে।</li>
-                                            <li>খুব সহজ সেটাপ।</li>
-                                                 <li>শব্দহীন।</li>
-                                                      <li>ইন্সটলেসন খুব সহজ।</li>
-                                                           <li>এটি নিজে নিজেই ব্যবহার করা যায়।</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rules_item">
-                                <div class="rules_head">
-                                    <h2 class="border-0">এটির সাথে যা যা থাকছে</h2>
-                                    <div class="rules_des">
-                                        <ul>
-                                            <li>একটি এডাল্ট মাস্ক।</li>
-                                            <li>একটি বেবি মাস্ক।</li>
-                                            <li>একটি মাউথ টিউব।</li>
-                                            <li>একটি USB ক্যাবল।</li>
-                                                              <li>একটি মেস নেবুলাইজার মেশিন।</li>
-                                            <li>ইউজার ম্যনুয়াল।</li>
-                                                              <li>এক জোড়া ব্যাটারি সম্পূর্ন ফ্রী।</li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                         
+                            {!! $campaign_data->description !!}
 
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        @if($campaign_data->features)
+
+              <section>
+            <div class="container" style="margin-bottom:40px; ">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="campro_inn">
+                           {!! $campaign_data->features!!}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @endif
+        <!-- Why Choose Us & Policy Section -->
+    <section class="policy_section section-padding" style="background: #fff;">
+ <div class="container">
+   <div class="section_title text-center mb-5">
+     <h2 style="color: var(--primary-color); font-weight: 800; font-size: 2rem;">কেন আমাদের থেকে কিনবেন?</h2>
+   </div>
+   <div class="row">
+     <div class="col-md-4 mb-4">
+  <div class="policy_card text-center p-4 h-100" style="background: #f9fafb; border-radius: var(--radius-lg); border: 1px solid #e5e7eb; transition: transform 0.3s ease;">
+    <div class="icon_box mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background: var(--primary-light); border-radius: 50%; color: var(--primary-color); font-size: 2rem;">
+      <i class="fas fa-truck"></i>
+    </div>
+    <h4 class="mb-3" style="font-weight: 700;">দ্রুত ডেলিভারি</h4>
+    <p style="color: var(--text-light);">আমরা সারা বাংলাদেশে ২-৩ দিনের মধ্যে ক্যাশ অন হোম ডেলিভারি নিশ্চিত করি।</p>
+  </div>
+     </div>
+     <div class="col-md-4 mb-4">
+  <div class="policy_card text-center p-4 h-100" style="background: #f9fafb; border-radius: var(--radius-lg); border: 1px solid #e5e7eb; transition: transform 0.3s ease;">
+    <div class="icon_box mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background: #ffebee; border-radius: 50%; color: var(--secondary-color); font-size: 2rem;">
+      <i class="fas fa-undo"></i>
+    </div>
+    <h4 class="mb-3" style="font-weight: 700;">সহজ রিটার্ন পলিসি</h4>
+    <p style="color: var(--text-light);">পণ্য হাতে পেয়ে চেক করে নিবেন। কোনো সমস্যা থাকলে সাথে সাথে রিটার্ন করতে পারবেন।</p>
+  </div>
+     </div>
+     <div class="col-md-4 mb-4">
+  <div class="policy_card text-center p-4 h-100" style="background: #f9fafb; border-radius: var(--radius-lg); border: 1px solid #e5e7eb; transition: transform 0.3s ease;">
+    <div class="icon_box mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background: #e3f2fd; border-radius: 50%; color: #1976d2; font-size: 2rem;">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h4 class="mb-3" style="font-weight: 700;">সেরা কোয়ালিটি</h4>
+    <p style="color: var(--text-light);">আমরা একমাত্র বাংলাদেশের সর্বোচ্চ ভালো কোয়ালিটির প্রডাক্ট দিতে প্রতিশ্রুতিবদ্ধ।</p>
+  </div>
+     </div>
+   </div>
+ </div>
+</section>
+
+
+        {{-- <hr> --}}
+
+
 
         <section>
             <div class="container">
@@ -276,13 +402,13 @@
                             <div class="campro_img_slider owl-carousel">
                                <div class="campro_img_item">
                                    <img src="{{asset($campaign_data->image_one)}}" alt="">
-                               </div> 
+                               </div>
                                <div class="campro_img_item">
                                    <img src="{{asset($campaign_data->image_two)}}" alt="">
-                               </div> 
+                               </div>
                                <div class="campro_img_item">
                                    <img src="{{asset($campaign_data->image_three)}}" alt="">
-                               </div> 
+                               </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="ord_btn">
@@ -295,6 +421,8 @@
                 </div>
             </div>
         </section>
+
+
 
         <section class="why_choose_sec">
             <div class="container">
@@ -318,10 +446,10 @@
                                           <li>
                                             আমরা সারা দেশে দ্রুত সময়ে হোম ডেলিভারি দিয়ে থাকি।
                                           </li>
-                                                
-                                          
+
+
                                       </ul>
-                                      
+
                                   </div>
                                   <div class="why_choose_widget">
                                       <div class="why_img">
@@ -361,166 +489,107 @@
             </div>
         </section>
 
-    <section class="form_sec">
-        <div class="container">
-           <div class="row">
-             <div class="col-sm-12">
-                <div class="form_inn">
-                    <div class="col-sm-12">
-                        <div class="row">
-                <div class="col-sm-12">
-                    <h2 class="campaign_offer">অফারটি সীমিত সময়ের জন্য, তাই অফার শেষ হওয়ার আগেই অর্ডার করুন</h2>
-                </div>
-            </div>
-            <div class="row order_by">
-            <div class="col-sm-5 cus-order-2">
-                <div class="checkout-shipping" id="order_form">
-                    <form action="{{route('customer.ordersave')}}" method="POST" data-parsley-validate="">
-                    @csrf
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="potro_font">আপনার ইনফরমেশন দিন  </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group mb-3">
-                                        <label for="name">আপনার নাম লিখুন * </label>
-                                        <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{old('name')}}" placeholder="নাম" required>
-                                        @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+  <section class="order_section section-padding" id="order_form" style="background: #fff;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="order_form_container shadow-lg rounded overflow-hidden" style="border: 1px solid #e5e7eb;">
+                            <div class="card-header text-center p-4" style="background: var(--primary-color); color: white;">
+                                <h3 class="mb-0" style="font-weight: 700;">অর্ডার কনফার্ম করতে নিচের ফর্মটি পূরণ করুন অথবা কল করুন <a href="tel:+8801851018193">
+    <span style="text-decoration: none;
+    color: #fffa0b;
+    font-size: 24px;
+    font-weight: bold;">
+        +8801851018193
+    </span>
+</a></h3>
+                            </div>
+                            <div class="card-body p-4 p-md-5">
+                                <form action="{{route('customer.ordersave')}}" method="POST" data-parsley-validate="">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-lg-7 mb-4 mb-lg-0">
+                                            <h4 class="mb-4" style="color: var(--text-color); font-weight: 700; border-bottom: 2px solid #eee; padding-bottom: 10px;">অর্ডার করুন</h4>
+
+                                            <div class="form-group mb-3">
+                                                <label for="name" class="form-label fw-bold">আপনার নাম <span class="text-danger">*</span></label>
+                                                <input type="text" id="name" class="form-control form-control-lg" name="name" value="{{old('name')}}" placeholder="সম্পূর্ণ নাম লিখুন" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
+                                                @error('name')
+                                                    <span class="text-danger small">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group mb-3">
+                                                <label for="phone" class="form-label fw-bold">মোবাইল নাম্বার <span class="text-danger">*</span></label>
+                                                <input type="tel" id="phone" class="form-control form-control-lg" name="phone" value="{{old('phone')}}" placeholder="১১ ডিজিটের মোবাইল নাম্বার" pattern="[0-9]{11}" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
+                                                @error('phone')
+                                                    <span class="text-danger small">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group mb-3">
+                                                <label for="address" class="form-label fw-bold">সম্পূর্ণ ঠিকানা <span class="text-danger">*</span></label>
+                                                <input type="text" id="address" class="form-control form-control-lg" name="address" value="{{old('address')}}" placeholder="বাসা নং, রোড নং, থানা, জেলা" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
+                                                @error('address')
+                                                    <span class="text-danger small">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group mb-3">
+                                                <label for="area" class="form-label fw-bold">ডেলিভারি এলাকা <span class="text-danger">*</span></label>
+                                                <select id="area" class="form-control form-control-lg" name="area" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
+                                                    @foreach($shippingcharge as $key=>$value)
+                                                    <option value="{{$value->id}}">{{$value->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-5">
+                                            <div class="order_summary cartlist p-4 rounded" style="background: #f9fafb; border: 1px solid #e5e7eb;">
+                                                <h4 class="mb-4" style="color: var(--text-color); font-weight: 700; border-bottom: 2px solid #eee; padding-bottom: 10px;">অর্ডার সামারি</h4>
+
+                                                <div class="cart_items mb-4">
+                                                    @foreach(Cart::instance('shopping')->content() as $value)
+                                                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
+                                                        <div class="d-flex align-items-center">
+                                                            <img src="{{asset($value->options->image)}}" alt="Product" class="rounded" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
+                                                            <div>
+                                                                <h6 class="mb-0" style="font-size: 14px;">{{Str::limit($value->name, 20)}}</h6>
+                                                                <small class="text-muted">Qty: {{$value->qty}}</small>
+                                                            </div>
+                                                        </div>
+                                                        <span class="fw-bold">৳{{$value->price * $value->qty}}</span>
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>সাবটোটাল</span>
+                                                    <span class="fw-bold">৳{{$subtotal}}</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-3">
+                                                    <span>ডেলিভারি চার্জ</span>
+                                                    <span class="fw-bold" id="cart_shipping_cost">৳{{$shipping}}</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-4 pt-3 border-top">
+                                                    <span class="h5 fw-bold">সর্বমোট</span>
+                                                    <span class="h5 fw-bold text-primary" id="grand_total">৳{{$subtotal + $shipping}}</span>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary w-100 btn-lg btn-pulse">
+                                                    অর্ডার কনফার্ম করুন <i class="fas fa-check-circle"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- col-end -->
-                                <div class="col-sm-12">
-                                    <div class="form-group mb-3">
-                                        <label for="phone">আপনার মোবাইল লিখুন *</label>
-                                        <input type="number" minlength="11" id="number" maxlength="11" pattern="0[0-9]+" title="please enter number only and 0 must first character" title="Please enter an 11-digit number." id="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{old('phone')}}" placeholder="+৮৮ বাদে ১১ সংখ্যা "  required>
-                                        @error('phone')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <!-- col-end -->
-                                <div class="col-sm-12">
-                                    <div class="form-group mb-3">
-                                        <label for="address">আপনার ঠিকানা লিখুন   *</label>
-                                        <input type="address" id="address" class="form-control @error('address') is-invalid @enderror" placeholder="জেলা, থানা, গ্রাম " name="address" value="{{old('address')}}"  required>
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group mb-3">
-                                        <label for="area">আপনার এরিয়া সিলেক্ট করুন  *</label>
-                                        <select type="area" id="area" class="form-control @error('area') is-invalid @enderror" name="area"   required>
-                                            @foreach($shippingcharge as $key=>$value)
-                                            <option value="{{$value->id}}">{{$value->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <!-- col-end -->
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <button class="order_place" type="submit">অর্ডার কনফার্ম  করুন </button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <!-- card end -->
-                </form>
                 </div>
             </div>
-            <!-- col end -->
-            <div class="col-sm-7 cust-order-1">
-                <div class="cart_details">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="potro_font">পণ্যের বিবরণ </h5>
-                        </div>
-                        <div class="card-body cartlist  table-responsive">
-                            <table class="cart_table table table-bordered table-striped text-center mb-0">
-                                <thead>
-                                   <tr>
-                                      <th style="width: 20%;">ডিলিট</th>
-                                      <th style="width: 40%;">প্রোডাক্ট</th>
-                                      <th style="width: 20%;">পরিমাণ</th>
-                                      <th style="width: 20%;">মূল্য</th>
-                                     </tr>
-                                </thead>
-
-                                <tbody>
-                                    @foreach(Cart::instance('shopping')->content() as $value)
-                                    <tr>
-                                        <td>
-                                            <a href="{{route('product',$value->options->slug)}}"><i class="fas fa-trash text-danger"></i></a>
-                                        </td>
-                                        <td class="text-left">
-                                             <a style="font-size: 14px;" href="{{route('product',$value->options->slug)}}"><img src="{{asset($value->options->image)}}" height="30" width="30"> {{Str::limit($value->name,20)}}</a>
-                                        </td>
-                                        <td width="15%" class="cart_qty">
-                                            <div class="qty-cart vcart-qty">
-                                                <div class="quantity">
-                                                    <button class="minus cart_decrement"  data-id="{{$value->rowId}}">-</button>
-                                                    <input type="text" value="{{$value->qty}}" readonly />
-                                                    <button class="plus  cart_increment" data-id="{{$value->rowId}}">+</button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>৳{{$value->price*$value->qty}}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                                <tfoot>
-                                     <tr>
-                                      <th colspan="3" class="text-end px-4">মোট</th>
-                                      <td>
-                                       <span id="net_total"><span class="alinur">৳ </span><strong>{{$subtotal}}</strong></span>
-                                      </td>
-                                     </tr>
-                                     <tr>
-                                      <th colspan="3" class="text-end px-4">ডেলিভারি চার্জ</th>
-                                      <td>
-                                       <span id="cart_shipping_cost"><span class="alinur">৳ </span><strong>{{$shipping}}</strong></span>
-                                      </td>
-                                     </tr>
-                                     <tr>
-                                      <th colspan="3" class="text-end px-4">সর্বমোট</th>
-                                      <td>
-                                       <span id="grand_total"><span class="alinur">৳ </span><strong>{{$subtotal+$shipping}}</strong></span>
-                                      </td>
-                                     </tr>
-                                    </tfoot>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- col end -->
-            </div>
-                    </div>
-                </div>
-
-             </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
         <script src="{{ asset('public/frontEnd/campaign/js') }}/jquery-2.1.4.min.js"></script>
         <script src="{{ asset('public/frontEnd/campaign/js') }}/all.js"></script>
@@ -553,7 +622,7 @@
                 var id = $(this).val();
                 $.ajax({
                     type: "GET",
-                    data: { id: id },
+                    data: { id: id, cart_type: 'campaign' },
                     url: "{{route('shipping.charge')}}",
                     dataType: "html",
                     success: function(response){
@@ -563,13 +632,13 @@
             });
         </script>
            <script>
-            $(".cart_remove").on("click", function () {
+            $(document).on("click", ".cart_remove", function () {
                 var id = $(this).data("id");
                 $("#loading").show();
                 if (id) {
                     $.ajax({
                         type: "GET",
-                        data: { id: id },
+                        data: { id: id, cart_type: 'campaign' },
                         url: "{{route('cart.remove')}}",
                         success: function (data) {
                             if (data) {
@@ -581,13 +650,13 @@
                     });
                 }
             });
-            $(".cart_increment").on("click", function () {
+            $(document).on("click", ".cart_increment", function () {
                 var id = $(this).data("id");
                 $("#loading").show();
                 if (id) {
                     $.ajax({
                         type: "GET",
-                        data: { id: id },
+                        data: { id: id, cart_type: 'campaign' },
                         url: "{{route('cart.increment')}}",
                         success: function (data) {
                             if (data) {
@@ -600,13 +669,13 @@
                 }
             });
 
-            $(".cart_decrement").on("click", function () {
+            $(document).on("click", ".cart_decrement", function () {
                 var id = $(this).data("id");
                 $("#loading").show();
                 if (id) {
                     $.ajax({
                         type: "GET",
-                        data: { id: id },
+                        data: { id: id, cart_type: 'campaign' },
                         url: "{{route('cart.decrement')}}",
                         success: function (data) {
                             if (data) {
@@ -621,7 +690,7 @@
 
         </script>
         <script>
-            $('.review_slider').owlCarousel({   
+            $('.review_slider').owlCarousel({
                 dots: false,
                 arrow: false,
                 autoplay: true,
@@ -650,7 +719,7 @@
         </script>
 
         <script>
-            $('.campro_img_slider').owlCarousel({   
+            $('.campro_img_slider').owlCarousel({
                 dots: false,
                 arrow: false,
                 autoplay: true,

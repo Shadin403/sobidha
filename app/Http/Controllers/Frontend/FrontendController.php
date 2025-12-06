@@ -110,9 +110,9 @@ class FrontendController extends Controller
 
         $min_price = $products->min('new_price');
         $max_price = $products->max('new_price');
-        if($request->min_price && $request->max_price){
-            $products = $products->where('new_price','>=',$request->min_price);
-            $products = $products->where('new_price','<=',$request->max_price);
+        if ($request->min_price && $request->max_price) {
+            $products = $products->where('new_price', '>=', $request->min_price);
+            $products = $products->where('new_price', '<=', $request->max_price);
         }
 
         $selectedSubcategories = $request->input('subcategory', []);
@@ -149,12 +149,12 @@ class FrontendController extends Controller
         } else {
             $products = $products->latest();
         }
-        
+
         $min_price = $products->min('new_price');
         $max_price = $products->max('new_price');
-        if($request->min_price && $request->max_price){
-            $products = $products->where('new_price','>=',$request->min_price);
-            $products = $products->where('new_price','<=',$request->max_price);
+        if ($request->min_price && $request->max_price) {
+            $products = $products->where('new_price', '>=', $request->min_price);
+            $products = $products->where('new_price', '<=', $request->max_price);
         }
 
         $selectedChildcategories = $request->input('childcategory', []);
@@ -199,12 +199,12 @@ class FrontendController extends Controller
         } else {
             $products = $products->latest();
         }
-        
+
         $min_price = $products->min('new_price');
         $max_price = $products->max('new_price');
-        if($request->min_price && $request->max_price){
-            $products = $products->where('new_price','>=',$request->min_price);
-            $products = $products->where('new_price','<=',$request->max_price);
+        if ($request->min_price && $request->max_price) {
+            $products = $products->where('new_price', '>=', $request->min_price);
+            $products = $products->where('new_price', '<=', $request->max_price);
         }
 
         $products = $products->paginate(24);
@@ -287,6 +287,9 @@ class FrontendController extends Controller
 
         $shipping = ShippingCharge::where(['id' => $request->id])->first();
         Session::put('shipping', $shipping->amount);
+        if ($request->cart_type == 'campaign') {
+            return view('frontEnd.layouts.ajax.campaign_cart');
+        }
         return view('frontEnd.layouts.ajax.cart');
     }
 
@@ -414,5 +417,4 @@ class FrontendController extends Controller
     {
         return view('frontEnd.layouts.pages.offers');
     }
-
 }
