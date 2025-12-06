@@ -16,10 +16,22 @@
                     style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
                 <div>
                     <h6 class="mb-0" style="font-size: 14px;">{{ Str::limit($value->name, 20) }}</h6>
-                    <small class="text-muted">Qty: {{ $value->qty }}</small>
+                    <div class="d-flex align-items-center mt-1">
+                        <button type="button" class="btn btn-xs btn-light border cart_decrement"
+                            data-id="{{ $value->rowId }}" style="padding: 0 5px;"><i class="fas fa-minus"
+                                style="font-size: 10px;"></i></button>
+                        <span class="mx-2" style="font-size: 13px;">{{ $value->qty }}</span>
+                        <button type="button" class="btn btn-xs btn-light border cart_increment"
+                            data-id="{{ $value->rowId }}" style="padding: 0 5px;"><i class="fas fa-plus"
+                                style="font-size: 10px;"></i></button>
+                    </div>
                 </div>
             </div>
-            <span class="fw-bold">৳{{ $value->price * $value->qty }}</span>
+            <div class="text-end">
+                <span class="fw-bold d-block">৳{{ $value->price * $value->qty }}</span>
+                <button type="button" class="btn btn-xs text-danger cart_remove p-0 mt-1"
+                    data-id="{{ $value->rowId }}"><i class="fas fa-trash-alt"></i> Remove</button>
+            </div>
         </div>
     @endforeach
 </div>

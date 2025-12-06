@@ -52,7 +52,7 @@ a {
 }
 
 .section-padding {
-    padding: 60px 0;
+    padding: 0px 0;
 }
 
 .text-center {
@@ -410,6 +410,8 @@ button.order_place {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     text-align: center;
     padding: 50px 0;
+    margin: -18px;
+    margin-top: -40px;
 }
 .cont_num {
     background: #fd003a;
@@ -607,7 +609,7 @@ button.order_place {
 /* Hero Section Styles */
 .hero-section {
     padding: 30px 0;
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;

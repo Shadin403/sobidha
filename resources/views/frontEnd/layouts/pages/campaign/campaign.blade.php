@@ -103,6 +103,10 @@
 
                             <!-- Product Selection moved to Order Form -->
 
+                            <div class="hero-footer">
+                                <a href="#order_form" class="btn-hero-order"> অর্ডার করতে ক্লিক করুন <i class="fa-solid fa-cart-shopping"></i></a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -152,6 +156,18 @@
                             @endif
 
                             <style>
+                                .btn-toggle-cart {
+                                    cursor: pointer;
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    transition: all 0.3s ease;
+                                }
+                                .check-icon {
+                                    display: inline-block;
+                                    width: 20px;
+                                }
+
                                 .premium-video-card {
                                     font-family: 'Hind Siliguri', sans-serif;
                                     background: #ffffff;
@@ -225,12 +241,17 @@
 
 
 
-                        <div class="cont_num" style="width: 100%;padding: 10px;">
-                            <h2>আমাদের থেকে বিস্তারিত জানতে এই নাম্বারে কল করুন</h2>
-                            <a href="tel:{{$contact->phone}}" style="font-family: fantasy;">{{$contact->phone}}</a>
-                            @if($campaign_data->included_items)
+                        <div style="width: 100%; padding: 10px; text-align: center;">
+                            <a href="tel:{{$contact->phone}}" class="btn btn-primary w-100 rounded-pill py-2 shadow-lg d-flex align-items-center justify-content-center gap-2" style="font-family: 'Hind Siliguri', sans-serif;">
+                                <i class="fas fa-phone-volume fa-shake" style="font-size: 24px;"></i>
+                                <div class="d-flex flex-column align-items-start">
+                                    <span style="font-size: 14px; font-weight: normal;">অর্ডার করতে কল করুন</span>
+                                    <span style="font-size: 20px; font-weight: bold; line-height: 1;">{{$contact->phone}}</span>
+                                </div>
+                            </a>
+                            {{-- @if($campaign_data->included_items)
                             {!! $campaign_data->included_items !!}
-                            @endif
+                            @endif --}}
                         </div>
 
                     </div>
@@ -287,7 +308,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="rev_inn">
+                    <div class="campro_inn" style="margin-bottom: 30px;">
                         <div class="d-flex align-items-center justify-content-center p-3">
                             <h3>{{$campaign_data->review}}</h3>
                         </div>
@@ -299,8 +320,8 @@
                             @endforeach
                         </div>
                         <div class="col-sm-12">
-                            <div class="ord_btn">
-                                <a href="#order_form" class="cam_order_now" id="cam_order_now"> অর্ডার করতে ক্লিক করুন <i class="fa-solid fa-cart-shopping"></i> </a>
+                            <div class="text-center mt-4">
+                                <a href="#order_form" class="btn-hero-order"> অর্ডার করতে ক্লিক করুন <i class="fa-solid fa-cart-shopping"></i> </a>
                             </div>
                         </div>
                     </div>
@@ -331,8 +352,8 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <div class="ord_btn">
-                                <a href="#order_form" class="cam_order_now" id="cam_order_now"> অর্ডার করতে ক্লিক করুন <i class="fa-solid fa-cart-shopping"></i> </a>
+                            <div class="text-center mt-4">
+                                <a href="#order_form" class="btn-hero-order"> অর্ডার করতে ক্লিক করুন <i class="fa-solid fa-cart-shopping"></i> </a>
                             </div>
                         </div>
                     </div>
@@ -552,14 +573,20 @@
                                             </div>
 
                                             <div class="action-area d-flex align-items-center justify-content-between gap-3 w-100 w-md-auto">
-                                                <div class="qty-control d-flex align-items-center">
-                                                    <button type="button" class="btn btn-sm btn-light border px-2" onclick="updateQty({{$item->id}}, 'minus')"><i class="fas fa-minus"></i></button>
-                                                    <input type="text" id="qty_{{$item->id}}" value="{{$qty}}" readonly style="width: 40px; text-align: center; border: 1px solid #ddd; height: 31px; margin: 0 5px; border-radius: 4px;">
-                                                    <button type="button" class="btn btn-sm btn-light border px-2" onclick="updateQty({{$item->id}}, 'plus')"><i class="fas fa-plus"></i></button>
-                                                </div>
-                                                <button type="button" class="btn btn-primary btn-sm btn-add-cart text-nowrap" onclick="addToCart({{$item->id}})">
-                                                    অর্ডার করুন <i class="fas fa-shopping-cart ms-1"></i>
-                                                </button>
+                                            <div class="qty-control d-flex align-items-center">
+                                                <button type="button" class="btn btn-sm btn-light border px-2" onclick="updateQty({{$item->id}}, 'minus')"><i class="fas fa-minus"></i></button>
+                                                <input type="text" id="qty_{{$item->id}}" value="{{$qty}}" readonly style="width: 40px; text-align: center; border: 1px solid #ddd; height: 31px; margin: 0 5px; border-radius: 4px;">
+                                                <button type="button" class="btn btn-sm btn-light border px-2" onclick="updateQty({{$item->id}}, 'plus')"><i class="fas fa-plus"></i></button>
+                                            </div>
+
+                                            <div class="toggle-container">
+                                                <input type="checkbox" id="product_check_{{$item->id}}"
+                                                       class="form-check-input product-checkbox"
+                                                       style="width: 25px; height: 25px; cursor: pointer;"
+                                                       data-id="{{$item->id}}"
+                                                       data-rowid="{{$cartItem ? $cartItem->rowId : ''}}"
+                                                       onchange="toggleCart(this, {{$item->id}})"
+                                                       {{$cartItem ? 'checked' : ''}}>
                                             </div>
                                         </div>
                                     </div>
@@ -618,10 +645,17 @@
                                                         <img src="{{asset($value->options->image)}}" alt="Product" class="rounded" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
                                                         <div>
                                                             <h6 class="mb-0" style="font-size: 14px;">{{Str::limit($value->name, 20)}}</h6>
-                                                            <small class="text-muted">Qty: {{$value->qty}}</small>
+                                                            <div class="d-flex align-items-center mt-1">
+                                                                <button type="button" class="btn btn-xs btn-light border cart_decrement" data-id="{{$value->rowId}}" style="padding: 0 5px;"><i class="fas fa-minus" style="font-size: 10px;"></i></button>
+                                                                <span class="mx-2" style="font-size: 13px;">{{$value->qty}}</span>
+                                                                <button type="button" class="btn btn-xs btn-light border cart_increment" data-id="{{$value->rowId}}" style="padding: 0 5px;"><i class="fas fa-plus" style="font-size: 10px;"></i></button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <span class="fw-bold">৳{{$value->price * $value->qty}}</span>
+                                                    <div class="text-end">
+                                                        <span class="fw-bold d-block">৳{{$value->price * $value->qty}}</span>
+                                                        <button type="button" class="btn btn-xs text-danger cart_remove p-0 mt-1" data-id="{{$value->rowId}}"><i class="fas fa-trash-alt"></i> Remove</button>
+                                                    </div>
                                                 </div>
                                                 @endforeach
                                             </div>
@@ -839,40 +873,78 @@
             }
         }
 
-        function addToCart(id) {
-            var qty = $('#qty_'+id).val();
-            // Show loading overlay if it exists
-            if($("#loading").length){
-                 $("#loading").show();
-            }
+        function toggleCart(checkbox, id) {
+            var isChecked = checkbox.checked;
+            var qty = $('#qty_' + id).val();
 
-            $.ajax({
-                type: "GET",
-                url: "{{url('add-to-cart')}}/" + id + "/" + qty,
-                success: function(data){
-                    if($("#loading").length){
-                         $("#loading").hide();
+            if (isChecked) {
+                // Add to cart
+                if($("#loading").length) $("#loading").show();
+                $.ajax({
+                    type: "GET",
+                    url: "{{url('add-to-cart')}}/" + id + "/" + qty,
+                    success: function(data){
+                        if($("#loading").length) $("#loading").hide();
+
+                        // Set rowId for future removal
+                        if(data.rowId) {
+                           checkbox.dataset.rowid = data.rowId;
+                        }
+
+                        // Refresh cart by triggering area change
+                        $("#area").trigger('change');
+
+                        // Show success toast
+                        toastr.success('Success', 'Product added to cart successfully');
+
+                        // Scroll to order form
+                        $('html, body').animate({
+                            scrollTop: $("#order_summary").offset().top - 100
+                        }, 500);
+                    },
+                    error: function(err){
+                        if($("#loading").length) $("#loading").hide();
+                        console.log(err);
+                        alert('Problem adding to cart. Please try again.');
+                        checkbox.checked = false; // Revert
                     }
-                    // Refresh cart by triggering area change
-                    $("#area").trigger('change');
-
-                    // Show success toast
-                    toastr.success('Success', 'Product added to cart successfully');
-
-                    // Scroll to order form
-                    $('html, body').animate({
-                        scrollTop: $("#order_summary").offset().top - 100
-                    }, 500);
-                },
-                error: function(err){
-                     if($("#loading").length){
-                         $("#loading").hide();
-                    }
-                    console.log(err);
-                    alert('Problem adding to cart. Please try again.');
+                });
+            } else {
+                // Remove from cart
+                var rowId = checkbox.dataset.rowid;
+                if (!rowId) {
+                    console.error("No rowId found for removal");
+                    // Try to find if it was reloaded without rowId being set in dataset (should be handled by blade)
+                    toastr.error('Error', 'Could not remove product. Please refresh page.');
+                    checkbox.checked = true; // Revert
+                    return;
                 }
-            });
+
+                if($("#loading").length) $("#loading").show();
+                $.ajax({
+                    type: "GET",
+                    data: { id: rowId, cart_type: 'campaign' },
+                    url: "{{route('cart.remove')}}",
+                    success: function(data){
+                        if (data) {
+                            $(".cartlist").html(data);
+                            $("#loading").hide();
+                            toastr.error('Removed', 'Product removed from cart'); // Red toast for removal?
+
+                            // Clear rowId
+                            checkbox.dataset.rowid = '';
+                        }
+                    },
+                    error: function(err){
+                        if($("#loading").length) $("#loading").hide();
+                        console.log(err);
+                        alert('Problem removing from cart.');
+                        checkbox.checked = true; // Revert
+                    }
+                });
+            }
         }
+
     </script>
 </body>
 </html>
