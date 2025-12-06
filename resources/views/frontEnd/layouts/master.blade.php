@@ -632,13 +632,7 @@
                                 @endforeach
                             </ul>
 
-                            <div class="d_app">
-                                <h2>Download App</h3>
-                                    <a href="">
-                                        <img src="{{ asset('public/frontEnd/images/app-download.png') }}"
-                                            alt="" />
-                                    </a>
-                            </div>
+
                         </div>
                     </div>
                     <!-- col end -->
