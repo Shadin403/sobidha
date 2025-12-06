@@ -262,7 +262,7 @@
             <div class="row">
                 <div class="col-sm-8" id="product-details-box">
                     <div class="description tab-content details-action-box" id="description">
-                        <h2> পণ্যের বিস্তারিত</h2>
+                        <h2> পণ্যের বিবরণ</h2>
                         <p>{!! $details->description !!}</p>
                     </div>
                     <div class="tab-content details-action-box" id="writeReview">
