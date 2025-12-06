@@ -5,6 +5,14 @@
     <link href="{{ asset('public/backEnd') }}/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('public/backEnd') }}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet"
         type="text/css" />
+    <style>
+        .select2-container .select2-selection--multiple {
+            min-height: 38px;
+            height: auto !important;
+            max-height: 250px;
+            overflow-y: auto !important;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -77,6 +85,19 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group mb-3">
+                                    <label for="video" class="form-label">Video Link (YouTube) </label>
+                                    <input type="text" class="form-control @error('video') is-invalid @enderror"
+                                        name="video" value="{{ $edit_data->video }}" id="video">
+                                    @error('video')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group mb-3">
                                     <label for="banner_title" class="form-label">Banner Title</label>
                                     <input type="text" class="form-control @error('banner_title') is-invalid @enderror"
                                         name="banner_title" value="{{ $edit_data->banner_title }}" id="banner_title">
@@ -105,15 +126,18 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group mb-3">
-                                    <label for="product_id" class="form-label">Products *</label>
-                                    <select class="select2 form-control  @error('product_id') is-invalid @enderror"
-                                        value="{{ old('product_id') }}" name="product_id" data-placeholder="Choose ...">
+                                    <label for="product_ids" class="form-label">Products *</label>
+                                    <select class="select2 form-control  @error('product_ids') is-invalid @enderror"
+                                        value="{{ old('product_ids') }}" name="product_ids[]" multiple
+                                        data-placeholder="Choose ...">
                                         <option value="">Select..</option>
                                         @foreach ($products as $value)
-                                            <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                            <option value="{{ $value->id }}"
+                                                @foreach ($select_products as $select_product) @if ($select_product->id == $value->id) selected @endif @endforeach>
+                                                {{ $value->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('product_id')
+                                    @error('product_ids')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -305,10 +329,7 @@
             placeholder: "Enter Your Text Here",
         });
     </script>
-    <script type="text/javascript">
-        document.forms['editForm'].elements['product_id'].value = "{{ $edit_data->product_id }}"
-        $('.select2').select2();
-    </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $(".btn-increment").click(function() {

@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('public/frontEnd/campaign/css') }}/owl.carousel.min.css" />
     <!-- owl carousel -->
     <link rel="stylesheet" href="{{ asset('public/frontEnd/campaign/css') }}/select2.min.css" />
+    <!-- toastr css -->
+    <link rel="stylesheet" href="{{ asset('public/backEnd/') }}/assets/css/toastr.min.css" />
     <!-- common css -->
     <link rel="stylesheet" href="{{ asset('public/frontEnd/campaign/css') }}/style.css" />
     <link rel="stylesheet" href="{{ asset('public/frontEnd/campaign/css') }}/responsive.css" />
@@ -95,31 +97,12 @@
                         </div>
 
                         <div class="hero-body">
-                            <div class="hero-image-wrapper">
-                                <img src="{{asset($campaign_data->image_one)}}" class="hero-image" alt="Product Image">
+                            <div class="hero-image-wrapper mb-3">
+                                <img src="{{asset($campaign_data->image_one)}}" class="hero-image" alt="Campaign Image">
                             </div>
-                            <div class="hero-price">
-                                <div class="price-container">
-                                    <div class="old-price-wrapper">
-                                        <span class="label">রেগুলার প্রাইজ:</span>
-                                        <span class="x-price-pro">
-                                            {{$product->old_price}}
-                                        </span>
-                                        <span class="currency" style="font-size: 16px;font-weight: bold; color: #00000;">টাকা</span>
-                                    </div>
 
-                                    <div class="new-price-wrapper d-flex">
-                                        <span class="offer-tag">🔥ডিসকাউন্ট প্রাইজ: </span>
-                                        <div class="big-price">
-                                            {{$product->new_price}} <span class="currency" style="color: #089700 !important; ">টাকা</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <!-- Product Selection moved to Order Form -->
 
-                            </div>
-                            <div class="hero-footer">
-                                <a href="#order_form" class="btn-hero-order">অর্ডার করুন</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,6 +122,15 @@
                             <!-- Google Font Import (যদি আগে না থাকে) -->
                             <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 
+                            @if($campaign_data->video)
+                            @php
+                                $video_id = '';
+                                $video_url = $campaign_data->video;
+                                if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $match)) {
+                                    $video_id = $match[1];
+                                }
+                            @endphp
+                            @if($video_id)
                             <div class="premium-video-card">
                                 <!-- Title Section -->
                                 <div class="video-title">
@@ -147,8 +139,7 @@
 
                                 <!-- Video Wrapper (Responsive) -->
                                 <div class="video-wrapper">
-                                    <!-- নিচের src এর মধ্যে আপনার YouTube ভিডিওর Embed Link দিন -->
-                                    <iframe src="https://www.youtube.com/embed/D0UnqGm_miA" title="Product Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                    <iframe src="https://www.youtube.com/embed/{{$video_id}}" title="Product Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                                     </iframe>
                                 </div>
 
@@ -157,6 +148,8 @@
                                     ভিডিওটি দেখে বিস্তারিত জেনে নিন
                                 </div>
                             </div>
+                            @endif
+                            @endif
 
                             <style>
                                 .premium-video-card {
@@ -536,6 +529,44 @@
                                 </a></h3>
                         </div>
                         <div class="card-body p-4 p-md-5">
+
+                            <div class="product-selection-area mb-5">
+                                <h4 class="text-center mb-4" style="color: #2d3436; font-weight: 700;">পছন্দের প্রোডাক্ট সিলেক্ট করুন</h4>
+                                <div class="row">
+                                    @foreach($products as $item)
+                                    @php
+                                        $cartItem = Cart::instance('shopping')->content()->where('id', $item->id)->first();
+                                        $qty = $cartItem ? $cartItem->qty : 1;
+                                    @endphp
+                                    <div class="col-12 mb-3">
+                                        <div class="product-item-card p-3 border rounded d-flex flex-column flex-md-row align-items-center justify-content-between gap-3" style="background: #f9f9f9;">
+                                            <div class="d-flex align-items-center w-100 w-md-auto">
+                                                <img src="{{asset($item->image?->image)}}" alt="{{$item->name}}" style="width: 70px; height: 70px; object-fit: cover; border-radius: 8px; margin-right: 15px;">
+                                                <div>
+                                                    <h6 class="mb-1" style="font-weight: 700; font-size: 16px;">{{$item->name}}</h6>
+                                                    <div class="price-info">
+                                                        <del class="text-danger small">{{$item->old_price}}</del>
+                                                        <span class="text-success fw-bold">{{$item->new_price}} ৳</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="action-area d-flex align-items-center justify-content-between gap-3 w-100 w-md-auto">
+                                                <div class="qty-control d-flex align-items-center">
+                                                    <button type="button" class="btn btn-sm btn-light border px-2" onclick="updateQty({{$item->id}}, 'minus')"><i class="fas fa-minus"></i></button>
+                                                    <input type="text" id="qty_{{$item->id}}" value="{{$qty}}" readonly style="width: 40px; text-align: center; border: 1px solid #ddd; height: 31px; margin: 0 5px; border-radius: 4px;">
+                                                    <button type="button" class="btn btn-sm btn-light border px-2" onclick="updateQty({{$item->id}}, 'plus')"><i class="fas fa-plus"></i></button>
+                                                </div>
+                                                <button type="button" class="btn btn-primary btn-sm btn-add-cart text-nowrap" onclick="addToCart({{$item->id}})">
+                                                    অর্ডার করুন <i class="fas fa-shopping-cart ms-1"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
                             <form action="{{route('customer.ordersave')}}" method="POST" data-parsley-validate="">
                                 @csrf
                                 <div class="row">
@@ -576,7 +607,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-5" id="order_summary">
                                         <div class="order_summary cartlist p-4 rounded" style="background: #f9fafb; border: 1px solid #e5e7eb;">
                                             <h4 class="mb-4" style="color: var(--text-color); font-weight: 700; border-bottom: 2px solid #eee; padding-bottom: 10px;">অর্ডার সামারি</h4>
 
@@ -627,6 +658,9 @@
     <script src="{{ asset('public/frontEnd/campaign/js') }}/bootstrap.min.js"></script>
     <script src="{{ asset('public/frontEnd/campaign/js') }}/owl.carousel.min.js"></script>
     <script src="{{ asset('public/frontEnd/campaign/js') }}/select2.min.js"></script>
+    <!-- toastr js -->
+    <script src="{{ asset('public/backEnd/') }}/assets/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
     <script src="{{ asset('public/frontEnd/campaign/js') }}/script.js"></script>
     <!-- bootstrap js -->
     <script>
@@ -793,6 +827,52 @@
             , }
         });
 
+    </script>
+    <script>
+        function updateQty(id, type) {
+            var qtyInput = $('#qty_'+id);
+            var currentQty = parseInt(qtyInput.val());
+            if(type == 'plus') {
+                qtyInput.val(currentQty + 1);
+            } else if(type == 'minus' && currentQty > 1) {
+                qtyInput.val(currentQty - 1);
+            }
+        }
+
+        function addToCart(id) {
+            var qty = $('#qty_'+id).val();
+            // Show loading overlay if it exists
+            if($("#loading").length){
+                 $("#loading").show();
+            }
+
+            $.ajax({
+                type: "GET",
+                url: "{{url('add-to-cart')}}/" + id + "/" + qty,
+                success: function(data){
+                    if($("#loading").length){
+                         $("#loading").hide();
+                    }
+                    // Refresh cart by triggering area change
+                    $("#area").trigger('change');
+
+                    // Show success toast
+                    toastr.success('Success', 'Product added to cart successfully');
+
+                    // Scroll to order form
+                    $('html, body').animate({
+                        scrollTop: $("#order_summary").offset().top - 100
+                    }, 500);
+                },
+                error: function(err){
+                     if($("#loading").length){
+                         $("#loading").hide();
+                    }
+                    console.log(err);
+                    alert('Problem adding to cart. Please try again.');
+                }
+            });
+        }
     </script>
 </body>
 </html>

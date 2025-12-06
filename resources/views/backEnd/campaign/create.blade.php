@@ -6,6 +6,14 @@
 
     <link href="{{ asset('public/backEnd') }}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('public/backEnd') }}/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        .select2-container .select2-selection--multiple {
+            min-height: 38px;
+            height: auto !important;
+            max-height: 250px;
+            overflow-y: auto !important;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -73,7 +81,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group mb-3">
-                                    <label for="video" class="form-label">Video </label>
+                                    <label for="video" class="form-label">Video Link (YouTube)</label>
                                     <input type="text" class="form-control @error('video') is-invalid @enderror"
                                         name="video" value="{{ old('video') }}" id="video">
                                     @error('video')
@@ -102,9 +110,9 @@
                             <div class="col-sm-12">
                                 <div class="form-group mb-3">
                                     <label for="product_id" class="form-label">Products *</label>
-                                    <select class="select2 form-control @error('product_id') is-invalid @enderror"
-                                        value="{{ old('product_id') }}" name="product_id" data-placeholder="Choose ..."
-                                        required>
+                                    <select class="select2 form-control @error('product_ids') is-invalid @enderror"
+                                        value="{{ old('product_ids') }}" name="product_ids[]" multiple
+                                        data-placeholder="Choose ..." required>
 
                                         <option value="">Select..</option>
                                         @foreach ($products as $value)
@@ -112,7 +120,7 @@
                                         @endforeach
 
                                     </select>
-                                    @error('product_id')
+                                    @error('product_ids')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

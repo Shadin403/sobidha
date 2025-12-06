@@ -13,9 +13,8 @@ use DB;
 class ShoppingController extends Controller
 {
 
-    public function addTocartGet($id, Request $request)
+    public function addTocartGet($id, $qty)
     {
-        $qty = 1;
         $productInfo = DB::table('products')->where('id', $id)->first();
         $productImage = DB::table('productimages')->where('product_id', $id)->first();
         $cartinfo = Cart::instance('shopping')->add([

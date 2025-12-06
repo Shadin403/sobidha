@@ -312,30 +312,44 @@ class FrontendController extends Controller
     public function campaign($slug)
     {
         $campaign_data = Campaign::where('slug', $slug)->with('images')->first();
-        $product = Product::where('id', $campaign_data->product_id)
+
+        $products = Product::where('campaign_id', $campaign_data->id)
             ->where('status', 1)
             ->with('image')
-            ->first();
-        Cart::instance('shopping')->destroy();
-        $cart_count = Cart::instance('shopping')->count();
-        if ($cart_count == 0) {
+            ->get();
+
+        // Legacy support checks
+        if ($products->isEmpty() && $campaign_data->product_id) {
+            $legacy_product = Product::where('id', $campaign_data->product_id)
+                ->where('status', 1)
+                ->with('image')
+                ->first();
+            if ($legacy_product) $products->push($legacy_product);
+        }
+
+        // Cart::instance('shopping')->destroy();
+
+        if (Cart::instance('shopping')->count() == 0 && count($products) > 0) {
+            $product = $products->first();
             Cart::instance('shopping')->add([
                 'id' => $product->id,
                 'name' => $product->name,
                 'qty' => 1,
                 'price' => $product->new_price,
                 'options' => [
-                    'slug' => $product->slug,
-                    'image' => $product->image->image,
+                    'image' => $product->image?->image,
                     'old_price' => $product->old_price,
+                    'slug' => $product->slug,
                     'purchase_price' => $product->purchase_price,
-                ],
+                ]
             ]);
         }
+
         $shippingcharge = ShippingCharge::where('status', 1)->get();
         $select_charge = ShippingCharge::where('status', 1)->first();
         Session::put('shipping', $select_charge->amount);
-        return view('frontEnd.layouts.pages.campaign.campaign', compact('campaign_data', 'product', 'shippingcharge'));
+
+        return view('frontEnd.layouts.pages.campaign.campaign', compact('campaign_data', 'products', 'shippingcharge'));
     }
 
     public function payment_success(Request $request)
