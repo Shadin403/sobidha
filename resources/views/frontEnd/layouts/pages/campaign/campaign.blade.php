@@ -79,18 +79,38 @@
                     <div class="col-md-6 col-lg-5">
                         <div class="hero-card">
                             <div class="hero-header">
-                                <h1 class="hero-title">{{$campaign_data->banner_title}}</h1>
+                                <h1 class="hero-title" style="color: #000000; font-size: 40px">{{$campaign_data->banner_title}}</h1>
+                                <hr>
+                                 <h4 >{!! $campaign_data->short_description !!} </h4>
                             </div>
+
                             <div class="hero-body">
                                 <div class="hero-image-wrapper">
                                      <img src="{{asset($campaign_data->image_one)}}" class="hero-image" alt="Product Image">
                                 </div>
                                 <div class="hero-price">
-                                    <span class="old-price">৳{{$product->old_price}}</span>
-                                    <span class="new-price">৳{{$product->new_price}}</span>
+                                  <div class="price-container">
+        <div class="old-price-wrapper">
+            <span class="label">রেগুলার প্রাইজ:</span>
+            <span class="x-price-pro">
+                {{$product->old_price}}
+            </span>
+            <span class="currency" style="    font-size: 16px;
+    font-weight: bold;
+    color: #00000;">টাকা</span>
+        </div>
+
+        <div class="new-price-wrapper d-flex">
+            <span class="offer-tag">🔥ডিসকাউন্ট প্রাইজ: </span>
+            <div class="big-price">
+                {{$product->new_price}} <span class="currency" style="color: #089700 !important; ">টাকা</span>
+            </div>
+        </div>
+    </div>
+
                                 </div>
                                 <div class="hero-footer">
-                                    <a href="#order_form" class="btn-hero-order">Order Now!</a>
+                                    <a href="#order_form" class="btn-hero-order">অর্ডার করুন</a>
                                 </div>
                             </div>
                         </div>
@@ -202,19 +222,20 @@
     }
 
     .old-price-wrapper .label {
-        font-size: 16px;
-        color: #888;
-        margin-right: 5px;
+           font-size: 16px;
+    color: #000000;
+    margin-right: 5px;
+    font-weight: bold;
     }
 
     /* Your X Design Refined */
-    .x-price-pro {
-        position: relative;
-        color: #999;
-        font-weight: 700;
-        font-size: 20px;
-        display: inline-block;
-    }
+  .x-price-pro {
+    position: relative;
+    color: #f00000;
+    font-weight: 700;
+    font-size: 25px;
+    display: inline-block;
+}
     .x-price-pro::before, .x-price-pro::after {
         content: "";
         position: absolute;
@@ -233,17 +254,20 @@
     }
 
     .offer-tag {
-        display: block;
-        font-size: 14px;
-        color: #ff3f34;
-        font-weight: 600;
-        margin-bottom: 5px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
+            display: block;
+    font-size: 21px;
+    color: #089700;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 
     .big-price {
-        font-size: 38px;
+       margin-left: 3px;
+    margin-top: 3px;
+        font-size: 27px;
         font-weight: 700;
         color: #2d3436;
         line-height: 1;
@@ -254,7 +278,7 @@
 
     .big-price .currency {
         font-size: 20px;
-        -webkit-text-fill-color: #555;
+        -webkit-text-fill-color: #089700;
     }
 
     .trust-text {

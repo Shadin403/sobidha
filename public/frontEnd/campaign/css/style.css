@@ -695,15 +695,47 @@ button.order_place {
 .btn-hero-order {
     background: #000;
     color: #fff;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 900;
-    font-style: italic; /* Matches 'Order Now!' style often seen */
-    padding: 12px 40px;
+    font-style: italic;
+    padding: 8px 20px;
     border-radius: 50px;
     text-transform: uppercase;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s, background 0.2s;
     display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-hero-order::before,
+.btn-hero-order::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    background: #000; /* Smoke/Fire color */
+    z-index: -1;
+    transform: scale(0.9);
+    animation: smokeEffect 3s infinite ease-out;
+}
+
+.btn-hero-order::after {
+    animation-delay: 1s; /* stagger the smoke */
+}
+
+@keyframes smokeEffect {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.5); /* Fly out */
+        opacity: 0;
+    }
 }
 
 .btn-hero-order:hover {
