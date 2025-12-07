@@ -345,15 +345,15 @@
 
 
 
-    <section class="campro_inn section-padding" style="background: #ffffff;position: relative;bottom: 13px;top: -24px;">
+    <section class="campro_inn" style="background: #ffffff;position: relative;bottom: 13px;top: -24px; padding: 20px 0;">
         <div class="container">
-            <div class="text-center mb-5">
+            <div class="text-center mb-3">
                 <h2 style="font-weight: 800; color: #2d3436; font-size: 28px;">{{ $campaign_data->review }}</h2>
                 <div style="height: 4px; width: 60px; background: var(--primary-color); margin: 10px auto; border-radius: 2px;"></div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="review-container position-relative">
+                    <div class="review-container position-relative" style="max-width: 400px; margin: 0 auto;">
                         <div class="review_slider owl-carousel">
                             @foreach($campaign_data->images as $key=>$value)
                             <div class="review_item p-2">
@@ -362,7 +362,7 @@
                             @endforeach
                         </div>
                     </div>
-                     <div class="text-center mt-5">
+                     <div class="text-center mt-3">
                         <a href="#order_form" class="btn-hero-order pulse-animation"> অর্ডার করুন <i class="fa-solid fa-cart-shopping ms-2"></i> </a>
                     </div>
                 </div>
