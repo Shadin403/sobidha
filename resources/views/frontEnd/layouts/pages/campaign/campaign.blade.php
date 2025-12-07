@@ -104,7 +104,7 @@
                             <!-- Product Selection moved to Order Form -->
 
                             <div class="hero-footer">
-                                <a href="#order_form" class="btn-hero-order"> অর্ডার করতে ক্লিক করুন <i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="#order_form" class="btn-hero-order"> অর্ডার করুন <i class="fa-solid fa-cart-shopping"></i></a>
                             </div>
 
                         </div>
@@ -321,7 +321,7 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="text-center mt-4">
-                                <a href="#order_form" class="btn-hero-order"> অর্ডার করতে ক্লিক করুন <i class="fa-solid fa-cart-shopping"></i> </a>
+                                <a href="#order_form" class="btn-hero-order"> অর্ডার করুন <i class="fa-solid fa-cart-shopping"></i> </a>
                             </div>
                         </div>
                     </div>
@@ -353,7 +353,7 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="text-center mt-4">
-                                <a href="#order_form" class="btn-hero-order"> অর্ডার করতে ক্লিক করুন <i class="fa-solid fa-cart-shopping"></i> </a>
+                                <a href="#order_form" class="btn-hero-order"> অর্ডার করুন <i class="fa-solid fa-cart-shopping"></i> </a>
                             </div>
                         </div>
                     </div>
@@ -369,10 +369,10 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="text-center mb-5">
+                    {{-- <div class="text-center mb-5">
                          <h2 style="font-weight: 800; color: #2d3436; margin-bottom: 10px; font-size: 28px;">সচরাচর জিজ্ঞাসিত প্রশ্ন</h2>
                          <div style="height: 3px; width: 60px; background: var(--primary-color, #ff3e3e); margin: 0 auto; border-radius: 2px;"></div>
-                    </div>
+                    </div> --}}
 
                     <div class="faq-container">
                         <!-- FAQ Item 1 -->
@@ -552,41 +552,42 @@
                         <div class="card-body p-4 p-md-5">
 
                             <div class="product-selection-area mb-5">
-                                <h4 class="text-center mb-4" style="color: #2d3436; font-weight: 700;">পছন্দের প্রোডাক্ট সিলেক্ট করুন</h4>
+                                <h4 class="text-center mb-4" style="color: #2d3436; font-weight: 700;">প্রোডাক্ট সিলেক্ট করুন</h4>
                                 <div class="row">
                                     @foreach($products as $item)
                                     @php
                                         $cartItem = Cart::instance('shopping')->content()->where('id', $item->id)->first();
                                         $qty = $cartItem ? $cartItem->qty : 1;
                                     @endphp
-                                    <div class="col-12 mb-3">
-                                        <div class="product-item-card p-3 border rounded d-flex flex-column flex-md-row align-items-center justify-content-between gap-3" style="background: #f9f9f9;">
-                                            <div class="d-flex align-items-center w-100 w-md-auto">
-                                                <img src="{{asset($item->image?->image)}}" alt="{{$item->name}}" style="width: 70px; height: 70px; object-fit: cover; border-radius: 8px; margin-right: 15px;">
+                                    <div class="col-12 mb-2">
+                                        <div class="product-item-card p-2 border rounded d-flex align-items-center justify-content-between gap-2" style="background: #f9f9f9;">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{asset($item->image?->image)}}" alt="{{$item->name}}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px; margin-right: 10px;">
                                                 <div>
-                                                    <h6 class="mb-1" style="font-weight: 700; font-size: 16px;">{{$item->name}}</h6>
-                                                    <div class="price-info">
-                                                        <del class="text-danger small">{{$item->old_price}}</del>
-                                                        <span class="text-success fw-bold">{{$item->new_price}} ৳</span>
+                                                    <h6 class="mb-0" style="font-weight: 700; font-size: 14px;">{{$item->name}}</h6>
+                                                    <div class="price-info lh-1">
+                                                        <del class="text-danger small" style="font-size: 11px;">{{$item->old_price}}</del>
+                                                        <span class="text-success fw-bold" style="font-size: 14px;">{{$item->new_price}} ৳</span>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="action-area d-flex align-items-center justify-content-between gap-3 w-100 w-md-auto">
-                                            <div class="qty-control d-flex align-items-center">
-                                                <button type="button" class="btn btn-sm btn-light border px-2" onclick="updateQty({{$item->id}}, 'minus')"><i class="fas fa-minus"></i></button>
-                                                <input type="text" id="qty_{{$item->id}}" value="{{$qty}}" readonly style="width: 40px; text-align: center; border: 1px solid #ddd; height: 31px; margin: 0 5px; border-radius: 4px;">
-                                                <button type="button" class="btn btn-sm btn-light border px-2" onclick="updateQty({{$item->id}}, 'plus')"><i class="fas fa-plus"></i></button>
-                                            </div>
+                                            <div class="action-area d-flex align-items-center gap-2">
+                                                <div class="qty-control d-flex align-items-center">
+                                                    <button type="button" class="btn btn-sm btn-light border px-1" onclick="updateQty({{$item->id}}, 'minus')" style="height: 24px; width: 24px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-minus" style="font-size: 10px;"></i></button>
+                                                    <input type="text" id="qty_{{$item->id}}" value="{{$qty}}" readonly style="width: 30px; text-align: center; border: 1px solid #ddd; height: 24px; margin: 0 3px; border-radius: 3px; font-size: 13px;">
+                                                    <button type="button" class="btn btn-sm btn-light border px-1" onclick="updateQty({{$item->id}}, 'plus')" style="height: 24px; width: 24px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-plus" style="font-size: 10px;"></i></button>
+                                                </div>
 
-                                            <div class="toggle-container">
-                                                <input type="checkbox" id="product_check_{{$item->id}}"
-                                                       class="form-check-input product-checkbox"
-                                                       style="width: 25px; height: 25px; cursor: pointer;"
-                                                       data-id="{{$item->id}}"
-                                                       data-rowid="{{$cartItem ? $cartItem->rowId : ''}}"
-                                                       onchange="toggleCart(this, {{$item->id}})"
-                                                       {{$cartItem ? 'checked' : ''}}>
+                                                <div class="toggle-container">
+                                                    <input type="checkbox" id="product_check_{{$item->id}}"
+                                                           class="form-check-input product-checkbox"
+                                                           style="width: 22px; height: 22px; cursor: pointer; margin-top: 0;"
+                                                           data-id="{{$item->id}}"
+                                                           data-rowid="{{$cartItem ? $cartItem->rowId : ''}}"
+                                                           onchange="toggleCart(this, {{$item->id}})"
+                                                           {{$cartItem ? 'checked' : ''}}>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -602,7 +603,7 @@
 
                                         <div class="form-group mb-3">
                                             <label for="name" class="form-label fw-bold">আপনার নাম <span class="text-danger">*</span></label>
-                                            <input type="text" id="name" class="form-control form-control-lg" name="name" value="{{old('name')}}" placeholder="সম্পূর্ণ নাম লিখুন" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
+                                            <input type="text" id="name" class="form-control" name="name" value="{{old('name')}}" placeholder="সম্পূর্ণ নাম লিখুন" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
                                             @error('name')
                                             <span class="text-danger small">{{ $message }}</span>
                                             @enderror
@@ -610,7 +611,7 @@
 
                                         <div class="form-group mb-3">
                                             <label for="phone" class="form-label fw-bold">মোবাইল নাম্বার <span class="text-danger">*</span></label>
-                                            <input type="tel" id="phone" class="form-control form-control-lg" name="phone" value="{{old('phone')}}" placeholder="১১ ডিজিটের মোবাইল নাম্বার" pattern="[0-9]{11}" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
+                                            <input type="tel" id="phone" class="form-control" name="phone" value="{{old('phone')}}" placeholder="১১ ডিজিটের মোবাইল নাম্বার" pattern="[0-9]{11}" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
                                             @error('phone')
                                             <span class="text-danger small">{{ $message }}</span>
                                             @enderror
@@ -618,7 +619,7 @@
 
                                         <div class="form-group mb-3">
                                             <label for="address" class="form-label fw-bold">সম্পূর্ণ ঠিকানা <span class="text-danger">*</span></label>
-                                            <input type="text" id="address" class="form-control form-control-lg" name="address" value="{{old('address')}}" placeholder="বাসা নং, রোড নং, থানা, জেলা" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
+                                            <input type="text" id="address" class="form-control" name="address" value="{{old('address')}}" placeholder="বাসা নং, রোড নং, থানা, জেলা" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
                                             @error('address')
                                             <span class="text-danger small">{{ $message }}</span>
                                             @enderror
@@ -626,7 +627,7 @@
 
                                         <div class="form-group mb-3">
                                             <label for="area" class="form-label fw-bold">ডেলিভারি এলাকা <span class="text-danger">*</span></label>
-                                            <select id="area" class="form-control form-control-lg" name="area" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
+                                            <select id="area" class="form-control" name="area" required style="border-radius: var(--radius-md); border: 1px solid #d1d5db;">
                                                 @foreach($shippingcharge as $key=>$value)
                                                 <option value="{{$value->id}}">{{$value->name}}</option>
                                                 @endforeach
