@@ -261,23 +261,22 @@
     </section>
 
 
-    <section class="rules_sec">
+    <!-- Benefits / Description Section -->
+    <section class="description-section section-padding" style="background: #ffffff;">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-12 ">
-                    <div class=" d-flex align-items-center justify-content-center p-3" style="background: bisque;">
-                        <h2> 🌬🏠{{ $campaign_data->banner_title }} এর উপকারিতা🏠🌬</h2>
-                    </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="description-card p-4 p-md-5 rounded-4 shadow-sm" style="background: #fff; border: 1px solid #f0f0f0;">
+                         <div class="section-title text-center mb-4">
+                            <h2 style="font-weight: 800; color: #2d3436; font-size: 28px; margin-bottom: 10px;">
+                                <span style="color: var(--primary-color);">{{ $campaign_data->banner_title }}</span> এর বিস্তারিত
+                            </h2>
+                            <div style="height: 4px; width: 80px; background: var(--primary-color); margin: 0 auto; border-radius: 2px;"></div>
+                        </div>
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="">
-
-
-                        {!! $campaign_data->description !!}
-
+                        <div class="description-content" style="font-size: 16px; line-height: 1.8; color: #4b5563;">
+                            {!! $campaign_data->description !!}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -286,14 +285,18 @@
 
     @if($campaign_data->features)
 
-    <section>
-        <div class="container" style="margin-bottom:40px; ">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="campro_inn">
-                        {!! $campaign_data->features!!}
+    <section class="features-section section-padding" style="background: #f9fafb;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                     <div class="text-center mb-5">
+                         <h2 style="font-weight: 800; color: #2d3436; font-size: 28px;">কেন আমাদের থেকেই নিবেন?</h2>
+                         <div style="height: 3px; width: 60px; background: #dfe6e9; margin: 10px auto; border-radius: 2px;"></div>
                     </div>
 
+                    <div class="features-content p-4 rounded-3 bg-white shadow-sm border">
+                        {!! $campaign_data->features!!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -304,26 +307,25 @@
 
     {{-- <hr> --}}
 
-    <section>
+    <section class="review-section section-padding" style="background: #ffffff;">
         <div class="container">
+            <div class="text-center mb-5">
+                <h2 style="font-weight: 800; color: #2d3436; font-size: 28px;">গ্রাহকদের মতামত</h2>
+                <div style="height: 4px; width: 60px; background: var(--primary-color); margin: 10px auto; border-radius: 2px;"></div>
+            </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="campro_inn" style="margin-bottom: 30px;">
-                        <div class="d-flex align-items-center justify-content-center p-3">
-                            <h3>{{$campaign_data->review}}</h3>
-                        </div>
+                    <div class="review-container position-relative">
                         <div class="review_slider owl-carousel">
                             @foreach($campaign_data->images as $key=>$value)
-                            <div class="review_item">
-                                <img src="{{asset($value->image)}}" alt="">
+                            <div class="review_item p-2">
+                                <img src="{{asset($value->image)}}" alt="Review" class="img-fluid rounded shadow-sm border hover-zoom">
                             </div>
                             @endforeach
                         </div>
-                        <div class="col-sm-12">
-                            <div class="text-center mt-4">
-                                <a href="#order_form" class="btn-hero-order"> অর্ডার করুন <i class="fa-solid fa-cart-shopping"></i> </a>
-                            </div>
-                        </div>
+                    </div>
+                     <div class="text-center mt-5">
+                        <a href="#order_form" class="btn-hero-order pulse-animation"> অর্ডার করুন <i class="fa-solid fa-cart-shopping ms-2"></i> </a>
                     </div>
                 </div>
             </div>
@@ -331,33 +333,29 @@
     </section>
 
 
-    <section>
+    <section class="gallery-section section-padding" style="background: #f8f9fa;">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="campro_inn">
-                        <div class="campro_head">
-                            <h2>{{$campaign_data->banner_title}}</h2>
-                        </div>
+             <div class="text-center mb-5">
+                <h2 style="font-weight: 800; color: #2d3436; font-size: 28px;">প্রোডাক্ট গ্যালারি</h2>
+                <div style="height: 3px; width: 60px; background: #cbd5e0; margin: 10px auto; border-radius: 2px;"></div>
+            </div>
 
-                        <div class="campro_img_slider owl-carousel">
-                            <div class="campro_img_item">
-                                <img src="{{asset($campaign_data->image_one)}}" alt="">
-                            </div>
-                            <div class="campro_img_item">
-                                <img src="{{asset($campaign_data->image_two)}}" alt="">
-                            </div>
-                            <div class="campro_img_item">
-                                <img src="{{asset($campaign_data->image_three)}}" alt="">
-                            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="campro_img_slider owl-carousel overflow-hidden rounded-3">
+                        <div class="campro_img_item">
+                            <img src="{{asset($campaign_data->image_one)}}" alt="Gallery 1" class="img-fluid w-100">
                         </div>
-                        <div class="col-sm-12">
-                            <div class="text-center mt-4">
-                                <a href="#order_form" class="btn-hero-order"> অর্ডার করুন <i class="fa-solid fa-cart-shopping"></i> </a>
-                            </div>
+                        <div class="campro_img_item">
+                            <img src="{{asset($campaign_data->image_two)}}" alt="Gallery 2" class="img-fluid w-100">
+                        </div>
+                        <div class="campro_img_item">
+                            <img src="{{asset($campaign_data->image_three)}}" alt="Gallery 3" class="img-fluid w-100">
                         </div>
                     </div>
-
+                    <div class="text-center mt-5">
+                        <a href="#order_form" class="btn-hero-order"> অর্ডার করুন <i class="fa-solid fa-cart-shopping"></i> </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -947,5 +945,94 @@
         }
 
     </script>
+    <style>
+        /* General Typography */
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            color: #2d3436;
+        }
+        .section-padding {
+            padding: 60px 0;
+        }
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 40px 0;
+            }
+        }
+
+        /* Description Content */
+        .description-content p {
+            margin-bottom: 15px;
+        }
+        .description-content ul, .features-content ul {
+            padding-left: 0;
+            list-style: none;
+        }
+        .description-content ul li, .features-content ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+        .description-content ul li::before, .features-content ul li::before {
+            content: '\f00c'; /* FontAwesome Check */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: var(--primary-color, #ef4444);
+            font-size: 14px;
+        }
+
+        /* Features Section */
+        .features-content {
+            border-left: 4px solid var(--primary-color, #ef4444);
+        }
+
+        /* Review Item */
+        .review_item img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .review_item:hover img {
+            transform: scale(1.05); /* Slight zoom */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Owl Carousel Dots */
+        .owl-dots {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .owl-dot {
+            height: 10px;
+            width: 10px;
+            background: #dfe6e9 !important;
+            border-radius: 50%;
+            margin: 0 5px;
+            display: inline-block;
+        }
+        .owl-dot.active {
+            background: var(--primary-color, #ef4444) !important;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        /* Pulse Animation */
+        .pulse-animation {
+            animation: pulse-btn 2s infinite;
+        }
+        @keyframes pulse-btn {
+            0% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+    </style>
 </body>
 </html>
