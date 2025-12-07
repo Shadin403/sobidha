@@ -91,7 +91,7 @@
                 <div class="col-md-6 col-lg-5">
                     <div class="hero-card">
                         <div class="hero-header">
-                            <h1 class="hero-title" style="color: #000000; font-size: 40px">{{$campaign_data->banner_title}}</h1>
+                            <h2 class="hero-title" style="color: #000000;">{{$campaign_data->banner_title}}</h1>
                             <hr>
                             <h4>{!! $campaign_data->short_description !!} </h4>
                         </div>
@@ -269,7 +269,7 @@
                     <div class="description-card p-4 p-md-5 rounded-4 shadow-sm" style="background: #fff; border: 1px solid #f0f0f0;">
                          <div class="section-title text-center mb-4">
                             <h2 style="font-weight: 800; color: #2d3436; font-size: 28px; margin-bottom: 10px;">
-                                <span style="color: var(--primary-color);">{{ $campaign_data->banner_title }}</span> এর বিস্তারিত
+                                <span style="color: var(--primary-color);">{{ $campaign_data->banner_title }}</span>
                             </h2>
                             <div style="height: 4px; width: 80px; background: var(--primary-color); margin: 0 auto; border-radius: 2px;"></div>
                         </div>
@@ -430,19 +430,19 @@
         <style>
             .faq-item {
                 background: #ffffff;
-                border-radius: 12px;
-                margin-bottom: 16px;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+                border-radius: 8px;
+                margin-bottom: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.02);
                 border: 1px solid #edf2f7;
                 overflow: hidden;
                 transition: all 0.3s ease;
             }
             .faq-item:hover {
-                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-                transform: translateY(-2px);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+                transform: translateY(-1px);
             }
             .faq-header {
-                padding: 20px 24px;
+                padding: 10px 15px;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
@@ -457,7 +457,7 @@
             }
             .faq-question {
                 font-weight: 700;
-                font-size: 17px;
+                font-size: 15px;
                 color: inherit;
             }
              .faq-header:not(.active) .faq-question {
@@ -465,10 +465,9 @@
             }
             .faq-body {
                 display: none;
-                padding: 0 24px 24px;
+                padding: 0 15px 15px;
                 border-top: 1px solid #fee2e2;
-                background: #fee2e2; /* Matching active header bg for seamless look or keep white */
-                background: #fff; /* Keeping body white looks cleaner usually */
+                background: #fff;
             }
             .faq-item.active .faq-body {
                  border-top: 1px solid #fee2e2;
@@ -476,12 +475,12 @@
             .faq-body p {
                 margin: 0;
                 color: #4b5563;
-                line-height: 1.6;
-                font-size: 15px;
+                line-height: 1.5;
+                font-size: 14px;
             }
             .faq-icon-wrapper {
-                width: 28px;
-                height: 28px;
+                width: 24px;
+                height: 24px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -495,8 +494,8 @@
                 transform: rotate(45deg);
             }
             .faq-icon {
-                font-size: 14px;
-                transition: none; /* Handled by wrapper */
+                font-size: 12px;
+                transition: none;
             }
         </style>
 
