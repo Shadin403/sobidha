@@ -348,7 +348,7 @@
     <section class="campro_inn section-padding" style="background: #ffffff;position: relative;bottom: 13px;top: -24px;">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 style="font-weight: 800; color: #2d3436; font-size: 28px;">আমাদের কাস্টমার রিভিউ</h2>
+                <h2 style="font-weight: 800; color: #2d3436; font-size: 28px;">{{ $campaign_data->review }}</h2>
                 <div style="height: 4px; width: 60px; background: var(--primary-color); margin: 10px auto; border-radius: 2px;"></div>
             </div>
             <div class="row">
