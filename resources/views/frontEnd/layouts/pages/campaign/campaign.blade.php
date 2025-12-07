@@ -532,7 +532,7 @@
         </script>
     </section>
 
-    <section class="order_section section-padding" id="order_form" style="background: #fff;">
+    <section class="order_section section-padding" id="order_form" style="background: #fff; padding: 0 !important;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
