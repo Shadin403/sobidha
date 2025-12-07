@@ -307,7 +307,7 @@
 
     {{-- <hr> --}}
 
-    <section class="review-section section-padding" style="background: #ffffff;">
+    <section class="campro_inn section-padding" style="background: #ffffff;">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 style="font-weight: 800; color: #2d3436; font-size: 28px;">আমাদের কাস্টমার রিভিউ</h2>
@@ -363,7 +363,7 @@
 
 
 
-    <section class="why_choose_sec" style="padding: 60px 0; background: #fdfdfd;">
+    <section class="why_choose_sec" style="padding: 6px 0;background: #fdfdfd;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -672,7 +672,7 @@
                                                 <span class="h5 fw-bold text-primary" id="grand_total">৳{{$subtotal + $shipping}}</span>
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary w-100 btn-lg btn-pulse">
+                                            <button type="submit" class="btn btn-primary w-100 btn-lg btn-pulse btn-confirm">
                                                 অর্ডার কনফার্ম করুন <i class="fas fa-check-circle"></i>
                                             </button>
                                         </div>
@@ -684,7 +684,20 @@
                 </div>
             </div>
         </div>
+
+
     </section>
+
+    <style>
+
+     @media (max-width: 768px) {
+    .btn-confirm {
+            width: 59% !important;
+    margin-left: 70px;
+    }
+}
+
+    </style>
 
     <script src="{{ asset('public/frontEnd/campaign/js') }}/jquery-2.1.4.min.js"></script>
     <script src="{{ asset('public/frontEnd/campaign/js') }}/all.js"></script>
