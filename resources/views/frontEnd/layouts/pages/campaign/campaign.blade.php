@@ -353,11 +353,11 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="review-container position-relative" style="max-width: 400px; margin: 0 auto;">
+                    <div class="review-container position-relative">
                         <div class="review_slider owl-carousel">
                             @foreach($campaign_data->images as $key=>$value)
                             <div class="review_item p-2">
-                                <img src="{{asset($value->image)}}" alt="Review" class="img-fluid rounded shadow-sm border hover-zoom" style="max-height: 300px; object-fit: contain; width: auto; margin: 0 auto;">
+                                <img src="{{asset($value->image)}}" alt="Review" class="img-fluid rounded shadow-sm border hover-zoom review-img-custom">
                             </div>
                             @endforeach
                         </div>

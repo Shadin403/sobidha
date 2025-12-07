@@ -745,3 +745,34 @@ button.order_place {
     background: #222;
     color: #fff;
 }
+
+/* Review Section Responsive Styles */
+.review-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.review-img-custom {
+    max-height: 400px; /* Larger on PC/Tablet by default if needed, or controlled by container */
+    object-fit: contain;
+    width: auto;
+    margin: 0 auto;
+}
+
+@media only screen and (min-width: 992px) {
+    .review-container {
+        max-width: 600px; /* Wider on PC */
+    }
+    .review-img-custom {
+        max-height: 400px; /* Adjust as needed for PC */
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .review-container {
+        max-width: 100%;
+    }
+    .review-img-custom {
+        max-height: 300px; /* Maintaining the mobile request */
+    }
+}
