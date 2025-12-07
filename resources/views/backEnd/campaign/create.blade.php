@@ -42,8 +42,7 @@
                                 <div class="form-group mb-3">
                                     <label for="banner_title" class="form-label">Banner Title *</label>
                                     <input type="text" class="form-control @error('banner_title') is-invalid @enderror"
-                                        name="banner_title" value="{{ old('banner_title') }}" id="banner_title"
-                                        required="">
+                                        name="banner_title" value="{{ old('banner_title') }}">
                                     @error('banner_title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

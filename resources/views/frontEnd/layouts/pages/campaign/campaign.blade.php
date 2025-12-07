@@ -357,7 +357,7 @@
                         <div class="review_slider owl-carousel">
                             @foreach($campaign_data->images as $key=>$value)
                             <div class="review_item p-2">
-                                <img src="{{asset($value->image)}}" alt="Review" class="img-fluid rounded shadow-sm border hover-zoom">
+                                <img src="{{asset($value->image)}}" alt="Review" class="img-fluid rounded shadow-sm border hover-zoom" style="max-height: 200px; object-fit: contain; width: auto; margin: 0 auto;">
                             </div>
                             @endforeach
                         </div>
