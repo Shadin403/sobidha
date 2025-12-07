@@ -110,12 +110,13 @@
                                 <div class="form-group mb-3">
                                     <label for="product_id" class="form-label">Products *</label>
                                     <select class="select2 form-control @error('product_ids') is-invalid @enderror"
-                                        value="{{ old('product_ids') }}" name="product_ids[]" multiple
-                                        data-placeholder="Choose ..." required>
+                                        name="product_ids[]" multiple data-placeholder="Choose ..." required>
 
                                         <option value="">Select..</option>
                                         @foreach ($products as $value)
-                                            <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                            <option value="{{ $value->id }}"
+                                                @if (is_array(old('product_ids')) && in_array($value->id, old('product_ids'))) selected @endif>{{ $value->name }}
+                                            </option>
                                         @endforeach
 
                                     </select>
