@@ -92,6 +92,10 @@ class CampaignController extends Controller
             $input['image_three'] = $image3Url;
         }
 
+        if($request->product_ids){
+            $input['product_id'] = $request->product_ids[0];
+        }
+
         $input['slug'] = strtolower(Str::slug($request->name));
         $campaign = Campaign::create($input);
 
