@@ -692,8 +692,8 @@
 
      @media (max-width: 768px) {
     .btn-confirm {
-            width: 59% !important;
-    margin-left: 70px;
+                   width: 90% !important;
+        margin-left: 9px;
     }
 }
 
