@@ -327,7 +327,15 @@ class FrontendController extends Controller
             if ($legacy_product) $products->push($legacy_product);
         }
 
-        // Cart::instance('shopping')->destroy();
+        // Cart cleanup: Remove items that are NOT in this campaign
+        $valid_product_ids = $products->pluck('id')->toArray();
+        $cart_content = Cart::instance('shopping')->content();
+
+        foreach ($cart_content as $item) {
+            if (!in_array($item->id, $valid_product_ids)) {
+                Cart::instance('shopping')->remove($item->rowId);
+            }
+        }
 
         if (Cart::instance('shopping')->count() == 0 && count($products) > 0) {
             $product = $products->first();
